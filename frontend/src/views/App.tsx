@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { FC, useState, useEffect } from "react";
+import "./App.css";
 import "../locales/config";
 import { useTranslation } from "react-i18next";
 
-function App() {
+const App: FC = () => {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState("ja");
 
   useEffect(() => {
-    i18n.changeLanguage(lang);
+    void i18n.changeLanguage(lang);
   }, [lang, i18n]);
 
   return (
@@ -21,6 +21,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

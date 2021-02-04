@@ -8,7 +8,7 @@ export const resources = {
   ja: { translation: ja },
 } as const;
 
-i18n.use(initReactI18next).init({
+void i18n.use(initReactI18next).init({
   lng: "ja",
   resources,
   fallbackLng: false,
