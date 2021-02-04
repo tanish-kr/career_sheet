@@ -28,6 +28,7 @@
     "lint": "npm-run-all eslint check-types",
     "lint:fix": "npm-run-all eslint:fix check-types format",
     "test": "react-scripts test",
+    "test:ci": "CI=true react-scripts test --ci",
     "eject": "react-scripts eject",
     "i18next-extract": "NODE_ENV=development babel './src/**/*.{js,jsx,ts,tsx}'"
   },

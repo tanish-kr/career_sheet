@@ -1,0 +1,35 @@
+name: frontend
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches:
+      - develop
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Cache node_modules
+      uses: actions/cache@v2
+        path: 'frontend/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Install dependencies
+      run: yarn
+      working-directory: frontend
+    - name: Run tests
+      run: yarn run test:ci
+      working-directory: frontend
+    - name: Run lint
+      run: yarn run lint
+      working-directory: frontend
+
