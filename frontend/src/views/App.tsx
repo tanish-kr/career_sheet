@@ -6,12 +6,10 @@ import { Section } from "react-bulma-components";
 import { NavigationComponent } from "./components/Navigation";
 
 const App: FC = () => {
-
   return (
     <>
       <NavigationComponent />
-      <Section>
-      </Section>
+      <Section></Section>
     </>
   );
 };

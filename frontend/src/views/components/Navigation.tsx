@@ -20,7 +20,7 @@ export const NavigationComponent: FC = () => {
         </Navbar.Item>
       </Navbar.Container>
     </Navbar>
-  )
+  );
 };
 //
 export default NavigationComponent;
