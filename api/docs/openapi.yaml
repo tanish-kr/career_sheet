@@ -1,0 +1,641 @@
+openapi: "3.0.3"
+info:
+  title: "Career Sheet API"
+  version: 0.0.1
+paths:
+  /profile:
+    post:
+      summary: Create Profile
+      requestBody:
+        $ref: "#/components/requestBodies/ProfileRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/ProfileResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Show Profile
+      responses:
+        '200':
+          $ref: "#/components/responses/ProfileResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    put:
+      summary: Update Profile
+      requestBody:
+        $ref: "#/components/requestBodies/ProfileRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/ProfileResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /companies:
+    post:
+      summary: Create Company
+      requestBody:
+        $ref: "#/components/requestBodies/CompanyRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/CompanyResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Companies
+      responses:
+        '200':
+          $ref: "#/components/responses/CompaniesResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /companies/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Company
+      requestBody:
+        $ref: "#/components/requestBodies/CompanyRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/CompanyResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Company
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /projects:
+    post:
+      summary: Create Project
+      requestBody:
+        $ref: "#/components/requestBodies/ProjectRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/ProjectResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Projcts
+      responses:
+        '200':
+          $ref: "#/components/responses/ProjectsResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /projects/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Project
+      requestBody:
+        $ref: "#/components/requestBodies/ProjectRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/ProjectResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Project
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /technologies:
+    post:
+      summary: Create Technology
+      requestBody:
+        $ref: "#/components/requestBodies/TechnologyRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/TechnologyResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Projcts
+      responses:
+        '200':
+          $ref: "#/components/responses/TechnologiesResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /technologies/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Technology
+      requestBody:
+        $ref: "#/components/requestBodies/TechnologyRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/TechnologyResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Technology
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /genres:
+    post:
+      summary: Create Genre
+      requestBody:
+        $ref: "#/components/requestBodies/GenreRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/GenreResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Companies
+      responses:
+        '200':
+          $ref: "#/components/responses/GenresResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /genres/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Genre
+      requestBody:
+        $ref: "#/components/requestBodies/GenreRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/GenreResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Genre
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /qualifications:
+    post:
+      summary: Create Qualification
+      requestBody:
+        $ref: "#/components/requestBodies/QualificationRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/QualificationResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Companies
+      responses:
+        '200':
+          $ref: "#/components/responses/QualificationsResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /qualifications/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Qualification
+      requestBody:
+        $ref: "#/components/requestBodies/QualificationRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/QualificationResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Qualification
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+  /links:
+    post:
+      summary: Create Link
+      requestBody:
+        $ref: "#/components/requestBodies/LinkRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/LinkResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      summary: Get Companies
+      responses:
+        '200':
+          $ref: "#/components/responses/LinksResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+  /links/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParameter"
+    put:
+      summary: Create Link
+      requestBody:
+        $ref: "#/components/requestBodies/LinkRequest"
+      responses:
+        '200':
+          $ref: "#/components/responses/LinkResponse"
+        '400':
+          $ref: "#/components/responses/ErrorResponse"
+        '404':
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete Link
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+
+components:
+  parameters:
+    IdParameter:
+      name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+  schemas:
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        address:
+          type: string
+        birthday:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+            - man
+            - woman
+        about:
+          type: string
+        nearest_station:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        employment_form:
+          type: string
+          description: 就業形態
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        employees:
+          type: integer
+          description: 従業員数
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        summary:
+          type: string
+        job_role:
+          type: string
+          enum:
+            - 開発
+            - テスト
+            - 運用保守
+            - 設計
+            - コードレビュー
+        technology_ids:
+          type: array
+          items:
+            type: integer
+        members:
+          type: integer
+          description: メンバー数
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Technology:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        genre_id:
+          type: integer
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Qualification:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        acquisition_date:
+          type: string
+          format: date
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Link:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+  responses:
+    ProfileResponse:
+      description: Profile Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Profile"
+    CompanyResponse:
+      description: Company Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Company"
+    CompaniesResponse:
+      description: Company Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company"
+    ProjectResponse:
+      description: Project Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Project"
+    ProjectsResponse:
+      description: Project Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+    TechnologyResponse:
+      description: Technology Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Technology"
+    TechnologiesResponse:
+      description: Technology Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Technology"   
+    GenreResponse:
+      description: Genre Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Genre"
+    GenresResponse:
+      description: Genre Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Genre"
+    QualificationResponse:
+      description: Qualification Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Qualification"
+    QualificationsResponse:
+      description: Qualification Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Qualification"
+    LinkResponse:
+      description: Link Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/Link"
+    LinksResponse:
+      description: Link Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Link"
+    ErrorResponse:
+      description: Error Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+              code:
+                type: string
+                
+  requestBodies:
+    ProfileRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Profile"
+              - required: [name, birthday, gender]
+    CompanyRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Company"
+              - required: [name, from]
+    ProjectRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Project"
+              - required: [name, from, technology_ids, job_role]
+    TechnologyRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Technology"
+              - required: [name, genre_id]
+    GenreRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Genre"
+              - required: [name]
+    QualificationRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Qualification"
+              - required: [name, acquisition_date]
+    LinkRequest:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Link"
+              - required: [name, url]
