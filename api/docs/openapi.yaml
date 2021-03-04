@@ -326,10 +326,10 @@ components:
         employment_form:
           type: string
           description: 就業形態
-        from:
+        start_on:
           type: string
           format: date
-        to:
+        end_on:
           type: string
           format: date
         employees:
@@ -366,10 +366,10 @@ components:
         members:
           type: integer
           description: メンバー数
-        from:
+        start_on:
           type: string
           format: date
-        to:
+        end_on:
           type: string
           format: date
         url:
@@ -588,7 +588,7 @@ components:
                   type: string
               code:
                 type: string
-                
+
   requestBodies:
     ProfileRequest:
       content:
@@ -603,14 +603,14 @@ components:
           schema:
             allOf:
               - $ref: "#/components/schemas/Company"
-              - required: [name, from]
+              - required: [name, start_on]
     ProjectRequest:
       content:
         application/json:
           schema:
             allOf:
               - $ref: "#/components/schemas/Project"
-              - required: [name, from, technology_ids, job_role]
+              - required: [name, start_on, technology_ids, job_role]
     TechnologyRequest:
       content:
         application/json:
