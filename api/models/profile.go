@@ -6,15 +6,15 @@ import (
 )
 
 type Profile struct {
-	ID             uint      `gorm:"primaryKey"`
-	Name           string    `gorm:"not null" json:"user"`
+	ID             uint      `gorm:"primaryKey" json:"id" uri:"id" binding:"required,uuid"`
+	Name           string    `gorm:"not null" json:"name"`
 	Address        string    `json:"address"`
 	Birthday       time.Time `json:"birthday"`
 	Gender         int       `json:"gender"`
 	About          string    `json:"about"`
 	NearestStation string    `json:"nearest_station"`
-	CreatedAt      time.Time
-	UpdatedAt      time.Time
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
 }
 
 // Get Profile

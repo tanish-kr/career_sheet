@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/stretchr/testify/assert"
 
 	"career_sheet/middlewares"
 	"career_sheet/models"
@@ -37,33 +38,13 @@ func TestGetProfile(t *testing.T) {
 		t.Errorf("Get profile error '%s'", err)
 	}
 
-	if res.ID != uint(id) {
-		t.Errorf("Id not match")
-	}
-
-	if res.Name != name {
-		t.Errorf("Name not match")
-	}
-
-	if res.Address != address {
-		t.Errorf("Address not match")
-	}
-
-	if res.Birthday != birthday {
-		t.Errorf("Birthday not match")
-	}
-
-	if res.Gender != gender {
-		t.Errorf("Gender not match")
-	}
-
-	if res.About != about {
-		t.Errorf("About not match")
-	}
-
-	if res.NearestStation != station {
-		t.Errorf("NearestStation not match")
-	}
+	assert.Equal(t, res.ID, uint(id))
+	assert.Equal(t, res.Name, name)
+	assert.Equal(t, res.Address, address)
+	assert.Equal(t, res.Birthday, birthday)
+	assert.Equal(t, res.Gender, gender)
+	assert.Equal(t, res.About, about)
+	assert.Equal(t, res.NearestStation, station)
 }
 
 func TestAddProfile(t *testing.T) {
