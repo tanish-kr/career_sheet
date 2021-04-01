@@ -48,7 +48,6 @@ func TestGetProfile(t *testing.T) {
 
 	assert.Equal(t, 200, response.Code)
 
-	fmt.Println(response.Body)
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		t.Errorf("response body unread '%s'", err)
@@ -66,4 +65,35 @@ func TestGetProfile(t *testing.T) {
 	// assert.Equal(t, profile.Gender, p["gender"])
 	assert.Equal(t, profile.NearestStation, p["nearest_station"])
 	defer tx.Rollback()
+}
+
+func TestDeleteProfile(t *testing.T) {
+	db := tests.GetTestDB()
+
+	profile := models.Profile{
+		Name:           "Bob",
+		Address:        "New York",
+		Birthday:       time.Now(),
+		Gender:         0,
+		About:          "About",
+		NearestStation: "Station",
+	}
+
+	tx := db.Begin()
+	if err := tx.Create(&profile).Error; err != nil {
+		t.Fatalf("Profile create error '%s'", err)
+	}
+
+	middlewares.DB = tx
+
+	uri := fmt.Sprintf("/profiles/%d", profile.ID)
+	fmt.Println(uri)
+	request, _ := http.NewRequest("DELETE", uri, nil)
+	response := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(response)
+	c.Params = gin.Params{{Key: "id", Value: fmt.Sprint(profile.ID)}}
+	c.Request = request
+	controllers.DeleteProfileEndpoint(c)
+
+	assert.Equal(t, 204, response.Code)
 }

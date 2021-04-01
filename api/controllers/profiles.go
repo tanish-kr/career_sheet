@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -34,8 +35,15 @@ func PutProfile(c *gin.Context) {
 	})
 }
 
-func DeleteProfile(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "pong",
+func DeleteProfileEndpoint(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	err := models.DeleteProfile(id)
+	if err != nil {
+		c.JSON(400, gin.H{"errors": err})
+		return
+	}
+
+	c.JSON(http.StatusNoContent, gin.H{
+		"message": "Success profile deleted",
 	})
 }
