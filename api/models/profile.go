@@ -29,8 +29,8 @@ func GetProfile(id int) (*Profile, error) {
 }
 
 // Add Profile
-func AddProfile(profile *Profile) error {
-	if err := middlewares.DB.Create(&profile).Error; err != nil {
+func (p *Profile) AddProfile() error {
+	if err := middlewares.DB.Create(&p).Error; err != nil {
 		return err
 	}
 
@@ -38,13 +38,8 @@ func AddProfile(profile *Profile) error {
 }
 
 // Edit Profile
-func EditProfile(id int, data *Profile) error {
-	profile, err := GetProfile(id)
-	if err != nil {
-		return nil
-	}
-
-	if err := middlewares.DB.Model(&profile).Updates(&data).Error; err != nil {
+func (p *Profile) EditProfile(data *Profile) error {
+	if err := middlewares.DB.Model(&p).Updates(&data).Error; err != nil {
 		return err
 	}
 	return nil

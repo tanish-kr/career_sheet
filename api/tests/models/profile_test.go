@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"regexp"
 	"testing"
 	"time"
@@ -48,12 +49,10 @@ func TestGetProfile(t *testing.T) {
 }
 
 func TestAddProfile(t *testing.T) {
-	db, mock, err := tests.GetDBMock()
-	if err != nil {
-		t.Fatalf("sqlmock error '%s'", err)
-	}
-
-	middlewares.DB = db
+	db := tests.GetTestDB()
+	tx := db.Begin()
+	middlewares.DB = tx
+	defer tx.Rollback()
 
 	name := "Bob"
 	address := "New York"
@@ -70,27 +69,23 @@ func TestAddProfile(t *testing.T) {
 		NearestStation: station,
 	}
 
-	mock.ExpectBegin()
-	mock.ExpectExec(regexp.QuoteMeta("INSERT INTO `profiles` (`name`,`address`,`birthday`,`gender`,`about`,`nearest_station`,`created_at`,`updated_at`) VALUES (?,?,?,?,?,?,?,?)")).
-		WithArgs(name, address, birthday, gender, about, station, tests.AnyTime{}, tests.AnyTime{}).
-		WillReturnResult(sqlmock.NewResult(1, 1))
-	mock.ExpectCommit()
-	err = models.AddProfile(profile)
+	err := profile.AddProfile()
 	if err != nil {
 		t.Errorf("Add profile error '%s'", err)
 	}
+
+	fmt.Println(profile)
+
+	assert.Greater(t, profile.ID, uint(0))
+	assert.NotNil(t, profile.CreatedAt)
+	assert.NotNil(t, profile.UpdatedAt)
 }
 
 func TestEditProfile(t *testing.T) {
-	db, mock, err := tests.GetDBMock()
-	if err != nil {
-		t.Fatalf("sqlmock error '%s'", err)
-	}
+	db := tests.GetTestDB()
 
-	middlewares.DB = db
-
-	id := 1
 	name := "Bob"
+	newName := "Luna"
 	address := "New York"
 	birthday := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
 	gender := 0
@@ -105,15 +100,25 @@ func TestEditProfile(t *testing.T) {
 		NearestStation: station,
 	}
 
-	mock.ExpectBegin()
-	mock.ExpectExec(regexp.QuoteMeta("UPDATE `profiles` SET `name`=?,`address`=?,`birthday`=?,`gender`=?,`about`=?,`nearest_station`=?,`updated_at`=? WHERE id = ?")).
-		WithArgs(name, address, birthday, gender, about, station, tests.AnyTime{}, id).
-		WillReturnResult(sqlmock.NewResult(1, 1))
-	mock.ExpectCommit()
-	err = models.EditProfile(id, profile)
+	tx := db.Begin()
+
+	if err := tx.Create(&profile).Error; err != nil {
+		t.Fatalf("Profile create error '%s'", err)
+	}
+
+	middlewares.DB = tx
+	defer tx.Rollback()
+
+	updated := profile.UpdatedAt
+	err := profile.EditProfile(&models.Profile{Name: newName})
 	if err != nil {
 		t.Errorf("Edit profile error '%s'", err)
 	}
+
+	fmt.Println(profile)
+
+	assert.Equal(t, profile.Name, newName)
+	assert.NotEqual(t, profile.UpdatedAt, updated)
 }
 
 func TestDeleteProfile(t *testing.T) {
