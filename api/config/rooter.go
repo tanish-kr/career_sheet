@@ -9,7 +9,8 @@ import (
 func Router() *gin.Engine {
 	r := gin.Default()
 	r.GET("/ping", controllers.PingEndpoint)
-	r.GET("/profiles/:id", controllers.GetProfileEndpoint)
-	r.DELETE("/profiles/:id", controllers.DeleteProfileEndpoint)
+	r.GET("/profiles/:id", controllers.GetProfile)
+	r.DELETE("/profiles/:id", controllers.DeleteProfile)
+	r.POST("/profiles", controllers.CreateProfile)
 	return r
 }
