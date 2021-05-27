@@ -44,7 +44,7 @@ func TestGetProfile(t *testing.T) {
 	c, _ := gin.CreateTestContext(response)
 	c.Params = gin.Params{{Key: "id", Value: fmt.Sprint(profile.ID)}}
 	c.Request = request
-	controllers.GetProfileEndpoint(c)
+	controllers.GetProfile(c)
 
 	assert.Equal(t, 200, response.Code)
 
@@ -93,7 +93,7 @@ func TestDeleteProfile(t *testing.T) {
 	c, _ := gin.CreateTestContext(response)
 	c.Params = gin.Params{{Key: "id", Value: fmt.Sprint(profile.ID)}}
 	c.Request = request
-	controllers.DeleteProfileEndpoint(c)
+	controllers.DeleteProfile(c)
 
 	assert.Equal(t, 204, response.Code)
 }

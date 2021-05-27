@@ -18,7 +18,7 @@ type Profile struct {
 }
 
 // Get Profile
-func GetProfile(id int) (*Profile, error) {
+func FindProfile(id int) (*Profile, error) {
 	var profile Profile
 	err := middlewares.DB.Where("id = ?", id).Find(&profile).Error
 	if err != nil {
@@ -47,7 +47,7 @@ func (p *Profile) EditProfile(data *Profile) error {
 
 // Delete profile
 func DeleteProfile(id int) error {
-	profile, err := GetProfile(id)
+	profile, err := FindProfile(id)
 	if err != nil {
 		return nil
 	}

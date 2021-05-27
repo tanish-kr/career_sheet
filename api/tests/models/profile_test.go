@@ -14,7 +14,7 @@ import (
 	"career_sheet/tests"
 )
 
-func TestGetProfile(t *testing.T) {
+func TestFindProfile(t *testing.T) {
 	db, mock, err := tests.GetDBMock()
 	if err != nil {
 		t.Fatalf("sqlmock error '%s'", err)
@@ -34,7 +34,7 @@ func TestGetProfile(t *testing.T) {
 		AddRow(id, name, address, birthday, gender, about, station)
 	mock.ExpectQuery(regexp.QuoteMeta("SELECT * FROM `profiles`  WHERE id = ?")).WithArgs(id).WillReturnRows(rows)
 
-	res, err := models.GetProfile(id)
+	res, err := models.FindProfile(id)
 	if err != nil {
 		t.Errorf("Get profile error '%s'", err)
 	}
