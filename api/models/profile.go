@@ -6,10 +6,10 @@ import (
 )
 
 type Profile struct {
-	ID             uint      `gorm:"primaryKey" json:"id" uri:"id" binding:"required,uuid"`
+	ID             uint      `gorm:"primaryKey" json:"id" uri:"id"`
 	Name           string    `gorm:"not null" json:"name"`
 	Address        string    `json:"address"`
-	Birthday       time.Time `json:"birthday"`
+	Birthday       time.Time `json:"birthday" time_format:"2006-01-02"`
 	Gender         int       `json:"gender"`
 	About          string    `json:"about"`
 	NearestStation string    `json:"nearest_station"`

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -96,4 +97,43 @@ func TestDeleteProfile(t *testing.T) {
 	controllers.DeleteProfile(c)
 
 	assert.Equal(t, 204, response.Code)
+}
+
+func TestCreateProfile(t *testing.T) {
+
+	db := tests.GetTestDB()
+	tx := db.Begin()
+	middlewares.DB = tx
+	defer tx.Rollback()
+
+	jsonStr := `{"name": "Bob", "address": "city", "gender": 0, "about": "About", "nearest_station": "Station", "birthday": "2001-01-01T00:00:00Z"}`
+	uri := "/profiles"
+	request, _ := http.NewRequest("POST", uri, bytes.NewReader([]byte(jsonStr)))
+	request.Header.Set("Content-Type", "application/json")
+	response := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(response)
+	c.Request = request
+	controllers.CreateProfile(c)
+
+	assert.Equal(t, 201, response.Code)
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		t.Errorf("response body unread '%s'", err)
+	}
+
+	var data map[string]interface{}
+	json.Unmarshal(body, &data)
+	p := data["profile"].(map[string]interface{})
+
+	// fmt.Println("body", response.Body)
+	fmt.Println("json body profile", p)
+
+	assert.NotNil(t, p["id"])
+	assert.Equal(t, "Bob", p["name"])
+	assert.Equal(t, "About", p["about"])
+	assert.Equal(t, "city", p["address"])
+	// assert.Equal(t, 0, p["gender"])
+	assert.Equal(t, "Station", p["nearest_station"])
+
 }

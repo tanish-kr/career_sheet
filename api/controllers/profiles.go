@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -14,13 +13,10 @@ func GetProfile(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	profile, err := models.FindProfile(id)
-	fmt.Println("err", err)
 	if err != nil {
 		c.JSON(400, gin.H{"errors": err})
 		return
 	}
-
-	fmt.Println("get profile", profile)
 
 	c.JSON(200, gin.H{
 		"profile": profile,
@@ -28,15 +24,22 @@ func GetProfile(c *gin.Context) {
 }
 
 func CreateProfile(c *gin.Context) {
-	profile := models.Profile{}
-	c.BindJSON(&profile)
-	err := profile.AddProfile()
+	var profile models.Profile
+	err := c.ShouldBindJSON(&profile)
+	if err != nil {
+		c.JSON(400, gin.H{"bind errors": err})
+		return
+	}
+
+	err = profile.AddProfile()
 	if err != nil {
 		c.JSON(400, gin.H{"errors": err})
 		return
 	}
+
+	c.Writer.WriteHeader(201)
 	c.JSON(201, gin.H{
-		"profile": profile,
+		"profile": &profile,
 	})
 }
 
