@@ -1,13 +1,12 @@
 package main
 
-import "github.com/gin-gonic/gin"
-
-import "controllers"
-import "middlewares"
+import (
+	"career_sheet/config"
+	"career_sheet/middlewares"
+)
 
 func main() {
-	r := gin.Default()
 	middlewares.ConnectDB()
-	r.GET("/ping", controllers.PingEndpoint)
+	r := config.Router()
 	r.Run()
 }
