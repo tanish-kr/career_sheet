@@ -37,6 +37,7 @@ func TestGetProfile(t *testing.T) {
 	}
 
 	middlewares.DB = tx
+	fmt.Println("profile", profile)
 
 	uri := fmt.Sprintf("/profiles/%d", profile.ID)
 	fmt.Println(uri)
@@ -136,4 +137,53 @@ func TestCreateProfile(t *testing.T) {
 	// assert.Equal(t, 0, p["gender"])
 	assert.Equal(t, "Station", p["nearest_station"])
 
+}
+
+func TestUpdateProfile(t *testing.T) {
+	db := tests.GetTestDB()
+
+	profile := models.Profile{
+		Name:           "Bob",
+		Address:        "New York",
+		Birthday:       time.Now(),
+		Gender:         0,
+		About:          "About",
+		NearestStation: "Station",
+	}
+
+	tx := db.Begin()
+	if err := tx.Create(&profile).Error; err != nil {
+		t.Fatalf("Profile create error '%s'", err)
+	}
+
+	middlewares.DB = tx
+
+	fmt.Println("upd profile", profile)
+
+	// jsonStr := `{"name": "Alice", "address": "city", "gender": 0, "about": "About", "nearest_station": "Station", "birthday": "2001-01-01T00:00:00Z"}`
+	jsonStr := `{"name": "Alice"}`
+	uri := fmt.Sprintf("/profiles/%d", profile.ID)
+	fmt.Println("update uri", uri)
+	request, _ := http.NewRequest("PUT", uri, bytes.NewReader([]byte(jsonStr)))
+	request.Header.Set("Content-Type", "application/json")
+	response := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(response)
+	c.Params = gin.Params{{Key: "id", Value: fmt.Sprint(profile.ID)}}
+	c.Request = request
+	controllers.UpdateProfile(c)
+
+	assert.Equal(t, 200, response.Code)
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		t.Errorf("response body unread '%s'", err)
+	}
+
+	var data map[string]interface{}
+	fmt.Println("data", data)
+	json.Unmarshal(body, &data)
+	p := data["profile"].(map[string]interface{})
+	defer tx.Rollback()
+
+	assert.Equal(t, "Alice", p["name"])
 }

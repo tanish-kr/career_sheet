@@ -11,6 +11,7 @@ func Router() *gin.Engine {
 	r.GET("/ping", controllers.PingEndpoint)
 	r.GET("/profiles/:id", controllers.GetProfile)
 	r.DELETE("/profiles/:id", controllers.DeleteProfile)
+	r.PUT("/profiles/:id", controllers.UpdateProfile)
 	r.POST("/profiles", controllers.CreateProfile)
 	return r
 }

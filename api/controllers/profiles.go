@@ -27,7 +27,7 @@ func CreateProfile(c *gin.Context) {
 	var profile models.Profile
 	err := c.ShouldBindJSON(&profile)
 	if err != nil {
-		c.JSON(400, gin.H{"bind errors": err})
+		c.JSON(400, gin.H{"errors": err})
 		return
 	}
 
@@ -44,8 +44,28 @@ func CreateProfile(c *gin.Context) {
 }
 
 func UpdateProfile(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var data models.Profile
+	err := c.ShouldBindJSON(&data)
+	if err != nil {
+		c.JSON(400, gin.H{"errors": err})
+		return
+	}
+
+	profile, err := models.FindProfile(id)
+	if err != nil {
+		c.JSON(400, gin.H{"errors": err})
+		return
+	}
+
+	err = profile.EditProfile(&data)
+	if err != nil {
+		c.JSON(400, gin.H{"errors": err})
+		return
+	}
+
 	c.JSON(200, gin.H{
-		"message": "pong",
+		"profile": profile,
 	})
 }
 
