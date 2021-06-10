@@ -297,7 +297,7 @@ components:
           type: string
         birthday:
           type: string
-          format: date
+          format: date-time
         gender:
           type: string
           enum:
@@ -328,10 +328,10 @@ components:
           description: 就業形態
         start_on:
           type: string
-          format: date
+          format: date-time
         end_on:
           type: string
-          format: date
+          format: date-time
         employees:
           type: integer
           description: 従業員数
