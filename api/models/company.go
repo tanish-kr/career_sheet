@@ -16,9 +16,18 @@ type Company struct {
 	UpdatedAt      time.Time `json:"updated_at"`
 }
 
+func SelectCompanies() ([]*Company, error) {
+	var companies []*Company
+	if err := middlewares.DB.Find(&companies).Error; err != nil {
+		return nil, err
+	}
+
+	return companies, nil
+}
+
 func FindCompany(id int) (*Company, error) {
 	var company Company
-	if err := middlewares.DB.Where("id = ?", id).Find(&company).Error; err != nil {
+	if err := middlewares.DB.First(&company, id).Error; err != nil {
 		return nil, err
 	}
 
