@@ -6,30 +6,35 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"gorm.io/gorm"
 
 	"career_sheet/middlewares"
 	"career_sheet/models"
 	"career_sheet/tests"
 )
 
+func createMockCompany(tx *gorm.DB) (error, models.Company) {
+	mock := models.Company{
+		Name:           "Ruby .inc",
+		EmploymentForm: "正社員",
+		Employees:      10,
+		StartOn:        time.Date(2012, 1, 1, 0, 0, 0, 0, time.Local),
+		EndOn:          time.Date(2019, 1, 1, 0, 0, 0, 0, time.Local),
+	}
+
+	err := tx.Create(&mock).Error
+	return err, mock
+}
+
 func TestFindCompany(t *testing.T) {
 	db := tests.GetTestDB()
 	tx := db.Begin()
-	name := "Ruby .inc"
-	employmentForm := "正社員"
-	employees := 10
-	startOn := time.Date(2012, 1, 1, 0, 0, 0, 0, time.Local)
-	endOn := time.Date(2019, 1, 1, 0, 0, 0, 0, time.Local)
-	mock := models.Company{
-		Name:           name,
-		EmploymentForm: employmentForm,
-		Employees:      employees,
-		StartOn:        startOn,
-		EndOn:          endOn,
-	}
-	if err := tx.Create(&mock).Error; err != nil {
+
+	err, mock := createMockCompany(tx)
+	if err != nil {
 		t.Fatalf("Company create error '%s'", err)
 	}
+
 	middlewares.DB = tx
 
 	defer tx.Rollback()
@@ -40,11 +45,11 @@ func TestFindCompany(t *testing.T) {
 	fmt.Println("company", company)
 
 	assert.Equal(t, company.ID, mock.ID)
-	assert.Equal(t, company.Name, name)
-	assert.Equal(t, company.EmploymentForm, employmentForm)
-	assert.Equal(t, company.Employees, employees)
-	assert.Equal(t, company.StartOn, startOn)
-	assert.Equal(t, company.EndOn, endOn)
+	assert.Equal(t, company.Name, mock.Name)
+	assert.Equal(t, company.EmploymentForm, mock.EmploymentForm)
+	assert.Equal(t, company.Employees, mock.Employees)
+	assert.Equal(t, company.StartOn, mock.StartOn)
+	assert.Equal(t, company.EndOn, mock.EndOn)
 }
 
 func TestSelectCompanies(t *testing.T) {
