@@ -17,5 +17,9 @@ func Router() *gin.Engine {
 	r.POST("/technologies", controllers.CreateTechnology)
 	r.PUT("/technologies/:id", controllers.UpdateTechnology)
 	r.DELETE("/technologies/:id", controllers.DeleteTechnology)
+	r.GET("/companies", controllers.GetCompanies)
+	r.POST("/companies", controllers.CreateCompany)
+	r.PUT("/companies/:id", controllers.UpdateCompany)
+	r.DELETE("/companies/:id", controllers.DeleteCompany)
 	return r
 }
