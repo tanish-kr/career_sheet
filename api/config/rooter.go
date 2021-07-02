@@ -25,5 +25,9 @@ func Router() *gin.Engine {
 	r.POST("/qualifications", controllers.CreateQualification)
 	r.PUT("/qualifications/:id", controllers.UpdateQualification)
 	r.DELETE("/qualifications/:id", controllers.DeleteQualification)
+	r.GET("/links", controllers.GetLinks)
+	r.POST("/links", controllers.CreateLink)
+	r.PUT("/links/:id", controllers.UpdateLink)
+	r.DELETE("/links/:id", controllers.DeleteLink)
 	return r
 }
