@@ -14,7 +14,7 @@ export const NavigationComponent: FC = () => {
           <h1 style={titleStyle}>{t("app.title")}</h1>
         </Navbar.Item>
       </Navbar.Brand>
-      <Navbar.Container position="end">
+      <Navbar.Container align="right">
         <Navbar.Item>
           <TranslationComponent />
         </Navbar.Item>
