@@ -6,9 +6,9 @@ export const Profile: FC = () => {
     <Columns>
       <Columns.Column>
         <Card>
-          <Card.Header.Icon className="avater-header">
+          <Card.Header.Icon className="avatar-header">
             <Image
-              className="avater"
+              className="avatar"
               src="https://www.pikpng.com/pngl/m/16-168770_user-iconset-no-profile-picture-icon-circle-clipart.png"
               size={96}
               rounded={true}
