@@ -6,6 +6,7 @@ import "bulma/css/bulma.min.css";
 import { Section } from "react-bulma-components";
 import { NavigationComponent } from "./components/Navigation";
 import { Profile } from "./components/Profile";
+import { Skills } from "./components/Skills";
 
 const App: FC = () => {
   return (
@@ -13,6 +14,9 @@ const App: FC = () => {
       <NavigationComponent />
       <Section>
         <Profile />
+      </Section>
+      <Section>
+        <Skills />
       </Section>
     </>
   );
