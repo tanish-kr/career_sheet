@@ -8,24 +8,24 @@ export const Skills: FC = () => {
         Skills
       </Card.Header.Title>
       <Card.Content>
-        <ul>
+        <dl>
           {/* TODO:  skill取得しloopさせる
               経験年数n年以上をパーセンテージに変換しておく
               maxを何年以上にするか決める
           */}
-          <li>
+          <dt>
             <strong>Ruby</strong>
-            <Element alignItems="center">
-              <Progress size="small" color="success" value={100} max={100} />
-            </Element>
-          </li>
-          <li>
+          </dt>
+          <Element alignItems="center" renderAs="dd">
+            <Progress size="small" color="success" value={100} max={100} />
+          </Element>
+          <dt>
             <strong>JavaScript</strong>
-            <Element alignItems="center">
-              <Progress size="small" color="success" value={80} max={100} />
-            </Element>
-          </li>
-        </ul>
+          </dt>
+          <Element alignItems="center" renderAs="dd">
+            <Progress size="small" color="success" value={80} max={100} />
+          </Element>
+        </dl>
       </Card.Content>
     </Card>
   );
