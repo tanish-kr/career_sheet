@@ -1,5 +1,12 @@
 import React, { FC } from "react";
-import { Level, Heading, Image, Columns, Card, Element } from "react-bulma-components";
+import {
+  Level,
+  Heading,
+  Image,
+  Columns,
+  Card,
+  Element,
+} from "react-bulma-components";
 
 export const Profile: FC = () => {
   return (

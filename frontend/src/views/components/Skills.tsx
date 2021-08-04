@@ -40,6 +40,6 @@ export const Skills: FC = () => {
       </Element>
     </dl>
   );
-}
+};
 
 export default Skills;
