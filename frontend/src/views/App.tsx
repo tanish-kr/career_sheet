@@ -9,6 +9,7 @@ import { Links } from "./components/Links";
 import { Profile } from "./components/Profile";
 import { Skills } from "./components/Skills";
 import { Qualifications } from "./components/Qualifications";
+import { Company } from "./components/Company";
 
 const App: FC = () => {
   return (
@@ -46,6 +47,9 @@ const App: FC = () => {
             </Tile>
           </Tile>
         </Tile>
+      </Section>
+      <Section>
+        <Company />
       </Section>
     </>
   );
