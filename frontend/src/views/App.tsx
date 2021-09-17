@@ -17,13 +17,11 @@ const App: FC = () => {
       <NavigationComponent />
       <Section>
         <Profile />
-      </Section>
-      <Section>
         <Tile kind="ancestor">
           <Tile size={6} vertical>
             <Tile kind="parent" vertical>
               <Tile kind="child" className="card">
-                <Card.Header.Title>Skills</Card.Header.Title>
+                <Card.Header.Title className="has-background-grey-lighter">Skills</Card.Header.Title>
                 <Card.Content className="pt-0">
                   <Skills />
                 </Card.Content>
@@ -33,13 +31,13 @@ const App: FC = () => {
           <Tile size={6} vertical>
             <Tile kind="parent" vertical>
               <Tile kind="child" className="card">
-                <Card.Header.Title>Qualifications</Card.Header.Title>
+                <Card.Header.Title className="has-background-grey-lighter">Qualifications</Card.Header.Title>
                 <Card.Content className="pt-0">
                   <Qualifications />
                 </Card.Content>
               </Tile>
               <Tile kind="child" className="card">
-                <Card.Header.Title>Links</Card.Header.Title>
+                <Card.Header.Title className="has-background-grey-lighter">Links</Card.Header.Title>
                 <Card.Content className="pt-0">
                   <Links />
                 </Card.Content>

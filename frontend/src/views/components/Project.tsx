@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import {
   Card,
-  Content,
   Columns,
-  Section,
   Heading,
   Block,
   Tag,
