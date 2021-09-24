@@ -6,21 +6,33 @@ import {
   Columns,
   Card,
   Element,
+  Icon,
 } from "react-bulma-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 export const Profile: FC = () => {
   return (
     <Columns>
       <Columns.Column>
         <Card>
-          <Card.Header.Icon className="avatar-header">
+          <div className="avatar-header is-flex is-justify-content-center">
             <Image
-              className="avatar"
-              src="https://www.pikpng.com/pngl/m/16-168770_user-iconset-no-profile-picture-icon-circle-clipart.png"
+              className=""
               size={96}
               rounded={true}
+              src="https://placehold.jp/96x96.png"
             />
-          </Card.Header.Icon>
+          </div>
+          <Card.Header>
+            <Card.Header.Title>
+            </Card.Header.Title>
+            <Card.Header.Icon>
+              <Icon>
+                <FontAwesomeIcon icon={faEdit} />
+              </Icon>
+            </Card.Header.Icon>
+          </Card.Header>
           <Card.Content>
             <Level>
               <Level.Side align="left">
