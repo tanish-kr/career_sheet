@@ -11,7 +11,11 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { ModalState, setOpenModal, setCloseModal } from "../../redux/modules/modals";
+import {
+  ModalState,
+  setOpenModal,
+  setCloseModal,
+} from "../../redux/modules/modals";
 import { ProfileForm } from "../containers/ProfileForm";
 
 export const Profile: FC = () => {
@@ -36,13 +40,16 @@ export const Profile: FC = () => {
               />
             </div>
             <Card.Header>
-              <Card.Header.Title>
-              </Card.Header.Title>
+              <Card.Header.Title></Card.Header.Title>
               <Card.Header.Icon>
                 {/* <i onClick={setOpenModal("profile")}> */}
                 {/*   <FontAwesomeIcon icon={faEdit} /> */}
                 {/* </i> */}
-                <Icon onClick={() => {openModal("profile")}}>
+                <Icon
+                  onClick={() => {
+                    openModal("profile");
+                  }}
+                >
                   <FontAwesomeIcon icon={faEdit} />
                 </Icon>
               </Card.Header.Icon>

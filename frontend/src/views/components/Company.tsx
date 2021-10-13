@@ -1,15 +1,13 @@
 import React, { FC } from "react";
-import {
-  Card,
-  Content,
-  Columns,
-} from "react-bulma-components";
+import { Card, Content, Columns } from "react-bulma-components";
 import { Project } from "./Project";
 
 export const Company: FC = () => {
   return (
     <Card>
-      <Card.Header.Title className="has-background-grey-lighter">Company Name</Card.Header.Title>
+      <Card.Header.Title className="has-background-grey-lighter">
+        Company Name
+      </Card.Header.Title>
       <Card.Content>
         <Columns>
           <Columns.Column size={3}>

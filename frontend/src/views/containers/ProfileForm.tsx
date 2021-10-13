@@ -1,25 +1,40 @@
 import React, { FC, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ModalState, setOpenModal, setCloseModal, selectModalName } from "../../redux/modules/modals";
+import {
+  ModalState,
+  setOpenModal,
+  setCloseModal,
+  selectModalName,
+} from "../../redux/modules/modals";
 import { TransitionState, setLang } from "../../redux/modules/translations";
 import { Form, Modal, Button } from "react-bulma-components";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {
+  useForm,
+  useController,
+  SubmitHandler,
+  Controller,
+} from "react-hook-form";
 
 type Inputs = {
-  name: string,
-  address?: string,
-  birthday?: Date,
-  gender?: number,
-  about?: string,
-  nearestStation?: string,
-
-}
+  name: string;
+  address?: string;
+  birthday?: Date;
+  gender?: number;
+  about?: string;
+  nearestStation?: string;
+};
 
 export const ProfileForm: FC = () => {
   const modalName = useSelector(selectModalName);
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   const closeModal = () => {
     dispatch(setCloseModal());
@@ -41,77 +56,143 @@ export const ProfileForm: FC = () => {
             <Form.Field>
               <Form.Label>Name</Form.Label>
               <Form.Control>
-                <Form.Input type="text" {...register("name", { required: true })}
-                  color={errors.name?.type === "required" ? "danger" : "text" } />
+                <Controller
+                  control={control}
+                  name="name"
+                  rules={{ required: true }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Input
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.name?.type === "required" ? "danger" : "text"
+                      }
+                    />
+                  )}
+                />
               </Form.Control>
-              {errors.name?.type === "required" &&
-                <Form.Help color="danger">
-                  name is required
-                </Form.Help>
-              }
+              {errors.name?.type === "required" && (
+                <Form.Help color="danger">name is required</Form.Help>
+              )}
             </Form.Field>
             <Form.Field>
               <Form.Label>Birthday</Form.Label>
               <Form.Control>
-                <Form.Input type="date" {...register("birthday", { required: false })}
-                  color={errors.birthday?.type === "required" ? "danger" : "text" }
-                  value="2001-01-01"
+                <Controller
+                  control={control}
+                  name="birthday"
+                  rules={{ required: false }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Input
+                      type="date"
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.birthday?.type === "required" ? "danger" : "text"
+                      }
+                      value="2001-01-01"
+                    />
+                  )}
                 />
               </Form.Control>
-              {errors.birthday?.type === "required" &&
-                <Form.Help color="danger">
-                </Form.Help>
-              }
+              {errors.birthday?.type === "required" && (
+                <Form.Help color="danger"></Form.Help>
+              )}
             </Form.Field>
             <Form.Field>
               <Form.Label>Gender</Form.Label>
               <Form.Control>
-                <Form.Radio {...register("gender", { required: false })}
-                  color={errors.gender?.type === "required" ? "danger" : "text" }
-                  value="male"
-                >
-                  male
-                </Form.Radio>
-                <Form.Radio {...register("gender", { required: false })}
-                  color={errors.gender?.type === "required" ? "danger" : "text" }
-                  value="female"
-                >
-                  female
-                </Form.Radio>
+                <Controller
+                  control={control}
+                  name="gender"
+                  rules={{ required: false }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <>
+                      <Form.Radio
+                        {...inputProps}
+                        domRef={ref}
+                        color={
+                          errors.gender?.type === "required" ? "danger" : "text"
+                        }
+                        value="male"
+                      >
+                        male
+                      </Form.Radio>
+                      <Form.Radio
+                        {...inputProps}
+                        domRef={ref}
+                        color={
+                          errors.gender?.type === "required" ? "danger" : "text"
+                        }
+                        value="famel"
+                      >
+                        female
+                      </Form.Radio>
+                    </>
+                  )}
+                />
               </Form.Control>
-              {errors.birthday?.type === "required" &&
-                <Form.Help color="danger">
-                </Form.Help>
-              }
+              {errors.birthday?.type === "required" && (
+                <Form.Help color="danger"></Form.Help>
+              )}
             </Form.Field>
             <Form.Field>
               <Form.Label>About</Form.Label>
               <Form.Control>
-                <Form.Textarea {...register("about", { required: false })}
-                  color={errors.about?.type === "required" ? "danger" : "text" } />
+                <Controller
+                  control={control}
+                  name="about"
+                  rules={{ required: false }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Textarea
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.about?.type === "required" ? "danger" : "text"
+                      }
+                    />
+                  )}
+                />
               </Form.Control>
-              {errors.about?.type === "required" &&
-                <Form.Help color="danger">
-                </Form.Help>
-              }
+              {errors.about?.type === "required" && (
+                <Form.Help color="danger"></Form.Help>
+              )}
             </Form.Field>
             <Form.Field>
               <Form.Label>NearestStation</Form.Label>
               <Form.Control>
-                <Form.Input type="text" {...register("nearestStation", { required: false })}
-                  color={errors.nearestStation?.type === "required" ? "danger" : "text" } />
+                <Controller
+                  control={control}
+                  name="nearestStation"
+                  rules={{ required: false }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Input
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.nearestStation?.type === "required"
+                          ? "danger"
+                          : "text"
+                      }
+                    />
+                  )}
+                />
               </Form.Control>
-              {errors.nearestStation?.type === "required" &&
-                <Form.Help color="danger">
-                </Form.Help>
-              }
+              {errors.nearestStation?.type === "required" && (
+                <Form.Help color="danger"></Form.Help>
+              )}
             </Form.Field>
-
           </Modal.Card.Body>
           <Modal.Card.Footer>
-            <Button color="success" submit={true}>Save</Button>
-            <Button color="grey-light"
-              onClick={() => {return closeModal()}}>
+            <Button color="success" submit={true}>
+              Save
+            </Button>
+            <Button
+              color="grey-light"
+              onClick={() => {
+                return closeModal();
+              }}
+            >
               Cancel
             </Button>
           </Modal.Card.Footer>
