@@ -59,6 +59,7 @@ export const ProfileForm: FC = () => {
                 <Controller
                   control={control}
                   name="name"
+                  defaultValue={""}
                   rules={{ required: true }}
                   render={({ field: { ref, ...inputProps } }) => (
                     <Form.Input
@@ -164,6 +165,7 @@ export const ProfileForm: FC = () => {
                 <Controller
                   control={control}
                   name="nearestStation"
+                  defaultValue={""}
                   rules={{ required: false }}
                   render={({ field: { ref, ...inputProps } }) => (
                     <Form.Input
