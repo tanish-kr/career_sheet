@@ -7,6 +7,7 @@ import {
   selectModalName,
 } from "../../redux/modules/modals";
 import { TransitionState, setLang } from "../../redux/modules/translations";
+import { ProfileState, setProfile } from "../../redux/modules/profiles";
 import { Form, Modal, Button } from "react-bulma-components";
 import {
   useForm,
@@ -15,14 +16,14 @@ import {
   Controller,
 } from "react-hook-form";
 
-type Inputs = {
-  name: string;
-  address?: string;
-  birthday?: Date;
-  gender?: number;
-  about?: string;
-  nearestStation?: string;
-};
+// type Inputs = {
+//   name: string;
+//   address?: string;
+//   birthday?: Date;
+//   gender?: number;
+//   about?: string;
+//   nearestStation?: string;
+// };
 
 export const ProfileForm: FC = () => {
   const modalName = useSelector(selectModalName);
@@ -33,12 +34,18 @@ export const ProfileForm: FC = () => {
     watch,
     control,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<ProfileState>();
+
+  // TODO: submitでpostするdispatchを呼ぶ
+  const onSubmit: SubmitHandler<ProfileState> = (data) => updateProfile(data);
 
   const closeModal = () => {
     dispatch(setCloseModal());
   };
+
+  const updateProfile = (data: ProfileState) => {
+    dispatch(setProfile(data));
+  }
 
   return (
     <Modal
