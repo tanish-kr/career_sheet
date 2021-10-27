@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   Level,
   Heading,
@@ -11,17 +11,13 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import {
-  ModalState,
-  setOpenModal,
-  setCloseModal,
-} from "../../redux/modules/modals";
+import { setOpenModal } from "../../redux/modules/modals";
+import { selectProfile } from "../../redux/modules/profiles";
 import { ProfileForm } from "../containers/ProfileForm";
 
 export const Profile: FC = () => {
-  // const modalName = useSelector<ModalState, string>((state) => state.name);
+  const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
-  // const [openModal, setOpenModal] = useState<string |null>();
   const openModal = (name: string) => {
     dispatch(setOpenModal(name));
   };
@@ -42,9 +38,6 @@ export const Profile: FC = () => {
             <Card.Header>
               <Card.Header.Title></Card.Header.Title>
               <Card.Header.Icon>
-                {/* <i onClick={setOpenModal("profile")}> */}
-                {/*   <FontAwesomeIcon icon={faEdit} /> */}
-                {/* </i> */}
                 <Icon
                   onClick={() => {
                     openModal("profile");
@@ -58,17 +51,17 @@ export const Profile: FC = () => {
               <Level>
                 <Level.Side align="left">
                   <Heading size={4} renderAs="p">
-                    Name
+                    {profile.name || "Name"}
                   </Heading>
                 </Level.Side>
                 <Level.Side align="right">
                   <Heading size={6} renderAs="p">
-                    Man(Age)
+                    {profile.gender || "Gender"}(Age)
                   </Heading>
                 </Level.Side>
               </Level>
               <Element textSize="5" textAlign="left">
-                About
+                {profile.about || "About"}
               </Element>
             </Card.Content>
           </Card>

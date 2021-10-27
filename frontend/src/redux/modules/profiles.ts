@@ -28,22 +28,11 @@ const ProfileSlice = createSlice({
         ...state,
         ...action.payload
       }
-      // [...state, action.payload]
-      // state = action.payload;
-      // return state;
-      // state = ...action.payload;
     }
-    // setOpenModal(state, action: PayloadAction<string>) {
-    //   state.name = action.payload;
-    //   // state.open = true;
-    //   // state.lang = action.payload;
-    // },
-    // setCloseModal(state) {
-    //   state.name = "";
-    //   // state.open = false;
-    // },
   },
 });
 
 export const { setProfile } = ProfileSlice.actions;
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const selectProfile = (state: RootState) => state.profile;
 export default ProfileSlice.reducer;

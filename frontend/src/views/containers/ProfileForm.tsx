@@ -16,15 +16,6 @@ import {
   Controller,
 } from "react-hook-form";
 
-// type Inputs = {
-//   name: string;
-//   address?: string;
-//   birthday?: Date;
-//   gender?: number;
-//   about?: string;
-//   nearestStation?: string;
-// };
-
 export const ProfileForm: FC = () => {
   const modalName = useSelector(selectModalName);
   const dispatch = useDispatch();
@@ -45,6 +36,7 @@ export const ProfileForm: FC = () => {
 
   const updateProfile = (data: ProfileState) => {
     dispatch(setProfile(data));
+    dispatch(setCloseModal());
   }
 
   return (

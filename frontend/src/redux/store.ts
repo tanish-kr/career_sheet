@@ -1,16 +1,31 @@
 import { configureStore } from "@reduxjs/toolkit";
-import translationReducer from "./modules/translations";
-import modalReducer from "./modules/modals";
-import profileReducer from "./modules/profiles";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import rootReducer from "./reducers";
 
-const reducer = {
-  translations: translationReducer,
-  modals: modalReducer,
-  profile: profileReducer,
-};
+const persistConfig = {
+  key: "careerSheet",
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
