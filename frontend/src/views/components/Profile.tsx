@@ -12,11 +12,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { setOpenModal } from "../../redux/modules/modals";
-import { selectProfile } from "../../redux/modules/profiles";
+import { selectProfile, selectAge } from "../../redux/modules/profiles";
 import { ProfileForm } from "../containers/ProfileForm";
 
 export const Profile: FC = () => {
   const profile = useSelector(selectProfile);
+  const age = useSelector(selectAge);
   const dispatch = useDispatch();
   const openModal = (name: string) => {
     dispatch(setOpenModal(name));
@@ -56,7 +57,7 @@ export const Profile: FC = () => {
                 </Level.Side>
                 <Level.Side align="right">
                   <Heading size={6} renderAs="p">
-                    {profile.gender || "Gender"}(Age)
+                    {profile.gender || "Gender"}({age || "Age"})
                   </Heading>
                 </Level.Side>
               </Level>

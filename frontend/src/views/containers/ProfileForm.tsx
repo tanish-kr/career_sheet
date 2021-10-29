@@ -6,6 +6,8 @@ import {
   setCloseModal,
   selectModalName,
 } from "../../redux/modules/modals";
+import { selectProfile } from "../../redux/modules/profiles";
+import DatePicker from "react-datepicker";
 import { TransitionState, setLang } from "../../redux/modules/translations";
 import { ProfileState, setProfile } from "../../redux/modules/profiles";
 import { Form, Modal, Button } from "react-bulma-components";
@@ -15,9 +17,11 @@ import {
   SubmitHandler,
   Controller,
 } from "react-hook-form";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const ProfileForm: FC = () => {
   const modalName = useSelector(selectModalName);
+  const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const {
     register,
@@ -58,7 +62,7 @@ export const ProfileForm: FC = () => {
                 <Controller
                   control={control}
                   name="name"
-                  defaultValue={""}
+                  defaultValue={profile.name || ""}
                   rules={{ required: true }}
                   render={({ field: { ref, ...inputProps } }) => (
                     <Form.Input
@@ -82,15 +86,16 @@ export const ProfileForm: FC = () => {
                   control={control}
                   name="birthday"
                   rules={{ required: false }}
-                  render={({ field: { ref, ...inputProps } }) => (
-                    <Form.Input
-                      type="date"
-                      {...inputProps}
-                      domRef={ref}
-                      color={
-                        errors.birthday?.type === "required" ? "danger" : "text"
-                      }
-                      value="2001-01-01"
+                  defaultValue={profile.birthday ? new Date(profile.birthday) : new Date(2001, 0, 1)}
+                  render={({ field: { onChange, onBlur, value, ...inputProps } }) => (
+                    <DatePicker
+                      dateFormat="yyyy-MM-dd"
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      selected={value as Date}
                     />
                   )}
                 />
@@ -132,7 +137,7 @@ export const ProfileForm: FC = () => {
                   )}
                 />
               </Form.Control>
-              {errors.birthday?.type === "required" && (
+              {errors.gender?.type === "required" && (
                 <Form.Help color="danger"></Form.Help>
               )}
             </Form.Field>
@@ -142,6 +147,7 @@ export const ProfileForm: FC = () => {
                 <Controller
                   control={control}
                   name="about"
+                  defaultValue={profile.about || ""}
                   rules={{ required: false }}
                   render={({ field: { ref, ...inputProps } }) => (
                     <Form.Textarea
@@ -164,7 +170,7 @@ export const ProfileForm: FC = () => {
                 <Controller
                   control={control}
                   name="nearestStation"
-                  defaultValue={""}
+                  defaultValue={profile.nearestStation || ""}
                   rules={{ required: false }}
                   render={({ field: { ref, ...inputProps } }) => (
                     <Form.Input
