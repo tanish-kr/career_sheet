@@ -41,7 +41,7 @@ export const ProfileForm: FC = () => {
   const updateProfile = (data: ProfileState) => {
     dispatch(setProfile(data));
     dispatch(setCloseModal());
-  }
+  };
 
   return (
     <Modal
@@ -86,8 +86,14 @@ export const ProfileForm: FC = () => {
                   control={control}
                   name="birthday"
                   rules={{ required: false }}
-                  defaultValue={profile.birthday ? new Date(profile.birthday) : new Date(2001, 0, 1)}
-                  render={({ field: { onChange, onBlur, value, ...inputProps } }) => (
+                  defaultValue={
+                    profile.birthday
+                      ? new Date(profile.birthday)
+                      : new Date(2001, 0, 1)
+                  }
+                  render={({
+                    field: { onChange, onBlur, value, ...inputProps },
+                  }) => (
                     <DatePicker
                       dateFormat="yyyy-MM-dd"
                       onChange={onChange}

@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { setOpenModal } from "../../redux/modules/modals";
 import { selectProfile, selectAge } from "../../redux/modules/profiles";
-import { ProfileForm } from "../containers/ProfileForm";
+import { ProfileForm } from "./ProfileForm";
 
 export const Profile: FC = () => {
   const profile = useSelector(selectProfile);

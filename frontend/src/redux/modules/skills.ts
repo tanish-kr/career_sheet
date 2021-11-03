@@ -16,9 +16,9 @@ const SkillsSlice = createSlice({
   initialState: [] as SkillState[],
   reducers: {
     addSkills(state, action: PayloadAction<SkillState>) {
-      state.push(action.payload)
-    }
-  }
+      state.push(action.payload);
+    },
+  },
 });
 
 const { addSkills } = SkillsSlice.actions;

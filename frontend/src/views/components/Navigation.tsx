@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Navbar } from "react-bulma-components";
-import { TranslationComponent } from "../containers/Translation";
+import { TranslationComponent } from "./Translation";
 import { useTranslation } from "react-i18next";
 
 export const NavigationComponent: FC = () => {
