@@ -21,7 +21,7 @@ const SkillsSlice = createSlice({
   },
 });
 
-const { addSkills } = SkillsSlice.actions;
+export const { addSkills } = SkillsSlice.actions;
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const selectSkills = (state: RootState) => state.skills;
 

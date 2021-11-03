@@ -1,22 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  ModalState,
-  setOpenModal,
-  setCloseModal,
-  selectModalName,
-} from "../../redux/modules/modals";
+import { setCloseModal, selectModalName } from "../../redux/modules/modals";
 import { selectProfile } from "../../redux/modules/profiles";
 import DatePicker from "react-datepicker";
-import { TransitionState, setLang } from "../../redux/modules/translations";
+
 import { ProfileState, setProfile } from "../../redux/modules/profiles";
 import { Form, Modal, Button } from "react-bulma-components";
-import {
-  useForm,
-  useController,
-  SubmitHandler,
-  Controller,
-} from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const ProfileForm: FC = () => {
@@ -24,9 +14,7 @@ export const ProfileForm: FC = () => {
   const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const {
-    register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm<ProfileState>();
@@ -91,9 +79,7 @@ export const ProfileForm: FC = () => {
                       ? new Date(profile.birthday)
                       : new Date(2001, 0, 1)
                   }
-                  render={({
-                    field: { onChange, onBlur, value, ...inputProps },
-                  }) => (
+                  render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
                       dateFormat="yyyy-MM-dd"
                       onChange={onChange}
