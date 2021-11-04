@@ -301,8 +301,8 @@ components:
         gender:
           type: string
           enum:
-            - man
-            - woman
+            - male
+            - female
         about:
           type: string
         nearest_station:

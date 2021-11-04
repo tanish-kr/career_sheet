@@ -10,11 +10,11 @@ export const NavigationComponent: FC = () => {
   return (
     <Navbar color="dark">
       <Navbar.Brand className="is-justify-content-center is-flex-grow-1">
-        <Navbar.Item>
+        <Navbar.Item className="ml-6">
           <h1 style={titleStyle}>{t("app.title")}</h1>
         </Navbar.Item>
       </Navbar.Brand>
-      <Navbar.Container position="end">
+      <Navbar.Container align="right">
         <Navbar.Item>
           <TranslationComponent />
         </Navbar.Item>
