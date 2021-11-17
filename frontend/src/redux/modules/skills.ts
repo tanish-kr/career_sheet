@@ -3,13 +3,8 @@ import { RootState } from "../store";
 
 export interface SkillState {
   name: string;
-  experience: number;
+  experience: number; // 20: 半年以内 40: 半年以上-1年未満 60: 1年以上-3年未満: 80: 3年以上- 5年未満 100: 5年以上
 }
-
-// const initialState = {
-//   name: "",
-//   experience: -1
-// } as SkillState;
 
 const SkillsSlice = createSlice({
   name: "skills",

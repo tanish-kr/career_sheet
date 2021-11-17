@@ -1,10 +1,8 @@
 import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
-import { selectProfile } from "../../redux/modules/profiles";
 import DatePicker from "react-datepicker";
-
-import { ProfileState, setProfile } from "../../redux/modules/profiles";
+import { selectProfile, ProfileState, setProfile } from "../../redux/modules/profiles";
 import { Form, Modal, Button } from "react-bulma-components";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
