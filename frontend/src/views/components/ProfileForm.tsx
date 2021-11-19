@@ -1,22 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  ModalState,
-  setOpenModal,
-  setCloseModal,
-  selectModalName,
-} from "../../redux/modules/modals";
-import { selectProfile } from "../../redux/modules/profiles";
+import { setCloseModal, selectModalName } from "../../redux/modules/modals";
 import DatePicker from "react-datepicker";
-import { TransitionState, setLang } from "../../redux/modules/translations";
-import { ProfileState, setProfile } from "../../redux/modules/profiles";
-import { Form, Modal, Button } from "react-bulma-components";
 import {
-  useForm,
-  useController,
-  SubmitHandler,
-  Controller,
-} from "react-hook-form";
+  selectProfile,
+  ProfileState,
+  setProfile,
+} from "../../redux/modules/profiles";
+import { Form, Modal, Button } from "react-bulma-components";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const ProfileForm: FC = () => {
@@ -24,9 +16,7 @@ export const ProfileForm: FC = () => {
   const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const {
-    register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm<ProfileState>();
@@ -41,7 +31,7 @@ export const ProfileForm: FC = () => {
   const updateProfile = (data: ProfileState) => {
     dispatch(setProfile(data));
     dispatch(setCloseModal());
-  }
+  };
 
   return (
     <Modal
@@ -86,16 +76,18 @@ export const ProfileForm: FC = () => {
                   control={control}
                   name="birthday"
                   rules={{ required: false }}
-                  defaultValue={profile.birthday ? new Date(profile.birthday) : new Date(2001, 0, 1)}
-                  render={({ field: { onChange, onBlur, value, ...inputProps } }) => (
+                  defaultValue={profile.birthday || "2001-01-01"}
+                  render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
                       dateFormat="yyyy-MM-dd"
-                      onChange={onChange}
+                      onChange={(date) => {
+                        onChange(date ? date.toString() : null);
+                      }}
                       onBlur={onBlur}
                       showMonthDropdown
                       showYearDropdown
                       dropdownMode="select"
-                      selected={value as Date}
+                      selected={value ? new Date(value) : null}
                     />
                   )}
                 />

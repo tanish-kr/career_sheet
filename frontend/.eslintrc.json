@@ -21,6 +21,7 @@
     },
     "plugins": [
         "react",
+        "autofix",
         "@typescript-eslint"
     ],
     "extends": [
@@ -30,5 +31,6 @@
       "prettier"
     ],
     "rules": {
+      "autofix/no-unused-vars": "error"
     }
 }
