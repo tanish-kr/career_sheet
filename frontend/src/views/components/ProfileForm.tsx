@@ -2,7 +2,11 @@ import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
 import DatePicker from "react-datepicker";
-import { selectProfile, ProfileState, setProfile } from "../../redux/modules/profiles";
+import {
+  selectProfile,
+  ProfileState,
+  setProfile,
+} from "../../redux/modules/profiles";
 import { Form, Modal, Button } from "react-bulma-components";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
@@ -72,20 +76,18 @@ export const ProfileForm: FC = () => {
                   control={control}
                   name="birthday"
                   rules={{ required: false }}
-                  defaultValue={
-                    profile.birthday
-                      ? new Date(profile.birthday)
-                      : new Date(2001, 0, 1)
-                  }
+                  defaultValue={profile.birthday || "2001-01-01"}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
                       dateFormat="yyyy-MM-dd"
-                      onChange={onChange}
+                      onChange={(date) => {
+                        onChange(date ? date.toString() : null);
+                      }}
                       onBlur={onBlur}
                       showMonthDropdown
                       showYearDropdown
                       dropdownMode="select"
-                      selected={value as Date}
+                      selected={value ? new Date(value) : null}
                     />
                   )}
                 />

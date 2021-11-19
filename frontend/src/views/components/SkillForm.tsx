@@ -26,7 +26,7 @@ export const SkillForm: FC = () => {
   };
 
   return (
-   <Modal
+    <Modal
       show={modalName === "skill"}
       onClose={() => {
         return closeModal();
@@ -71,47 +71,27 @@ export const SkillForm: FC = () => {
                   render={({ field: { ref, ...inputProps } }) => (
                     <ul>
                       <li>
-                        <Form.Radio
-                          {...inputProps}
-                          domRef={ref}
-                          value="20"
-                        >
-                        半年以内
+                        <Form.Radio {...inputProps} domRef={ref} value="20">
+                          半年以内
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio
-                          {...inputProps}
-                          domRef={ref}
-                          value="40"
-                        >
+                        <Form.Radio {...inputProps} domRef={ref} value="40">
                           半年以上-1年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio
-                          {...inputProps}
-                          domRef={ref}
-                          value="60"
-                        >
+                        <Form.Radio {...inputProps} domRef={ref} value="60">
                           1年以上-3年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio
-                          {...inputProps}
-                          domRef={ref}
-                          value="80"
-                        >
+                        <Form.Radio {...inputProps} domRef={ref} value="80">
                           3年以上- 5年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio
-                          {...inputProps}
-                          domRef={ref}
-                          value="100"
-                        >
+                        <Form.Radio {...inputProps} domRef={ref} value="100">
                           5年以上
                         </Form.Radio>
                       </li>
@@ -123,7 +103,6 @@ export const SkillForm: FC = () => {
                 <Form.Help color="danger"></Form.Help>
               )}
             </Form.Field>
-
           </Modal.Card.Body>
           <Modal.Card.Footer>
             <Button color="success" submit={true}>

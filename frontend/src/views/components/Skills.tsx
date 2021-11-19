@@ -15,16 +15,21 @@ export const Skills: FC = () => {
     dispatch(setOpenModal(name));
   };
 
-  const listItems = skills.map((skill, index) =>
+  const listItems = skills.map((skill, index) => (
     <span key={index}>
       <dt>
         <strong>{skill.name}</strong>
       </dt>
       <Element alignItems="center" renderAs="dd">
-        <Progress size="small" color="success" value={skill.experience} max={100} />
+        <Progress
+          size="small"
+          color="success"
+          value={skill.experience}
+          max={100}
+        />
       </Element>
     </span>
-  );
+  ));
 
   return (
     <>
@@ -44,9 +49,7 @@ export const Skills: FC = () => {
       </Card.Header>
 
       <Card.Content className="pt-0">
-        <dl>
-          {listItems}
-        </dl>
+        <dl>{listItems}</dl>
       </Card.Content>
 
       <SkillForm />

@@ -4,7 +4,7 @@ import { RootState } from "../store";
 export interface ProfileState {
   name: string;
   address?: string;
-  birthday: string | Date;
+  birthday: string;
   gender?: number;
   about?: string;
   nearestStation?: string;
