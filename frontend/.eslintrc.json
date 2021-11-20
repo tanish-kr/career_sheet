@@ -31,6 +31,6 @@
       "prettier"
     ],
     "rules": {
-      "autofix/no-unused-vars": "error"
+      "autofix/no-unused-vars": "warn"
     }
 }
