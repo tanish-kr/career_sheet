@@ -1,7 +1,18 @@
 import React, { FC } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bulma-components";
+import { QualificationState, selectQualifications } from "../../redux/modules/qualifications";
 
 export const Qualifications: FC = () => {
+  const dispatch = useDispatch();
+  const qualifications = useSelector(selectQualifications);
+  const qualificationItems = qualifications.map((qualification, index) => (
+    <tr key={index}>
+      <td>{qualification.name}</td>
+      <td>{qualification.acquisitionDate}</td>
+    </tr>
+  ));
+
   return (
     <Table bordered={false} size="fullwidth" striped={true}>
       <thead>
@@ -11,14 +22,7 @@ export const Qualifications: FC = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>基本情報技術者試験</td>
-          <td>2002/08</td>
-        </tr>
-        <tr>
-          <td>初級システムアドミニストレータ</td>
-          <td>2001/08</td>
-        </tr>
+        {qualificationItems}
       </tbody>
     </Table>
   );
