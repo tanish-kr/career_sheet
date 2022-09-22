@@ -1,11 +1,14 @@
 import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
-import { Form, Modal, Button } from "react-bulma-components";
+import { Form, Modal } from "react-bulma-components";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
-import { QualificationState, addQualifications } from "../../redux/modules/qualifications";
+import {
+  QualificationState,
+  addQualifications,
+} from "../../redux/modules/qualifications";
 
 export const QualificationForm: FC = () => {
   const modalName = useSelector(selectModalName);
@@ -16,9 +19,8 @@ export const QualificationForm: FC = () => {
     formState: { errors },
   } = useForm<QualificationState>();
 
-
-
-  const onSubmit: SubmitHandler<QualificationState> = (data) => updateQualifications(data);
+  const onSubmit: SubmitHandler<QualificationState> = (data) =>
+    updateQualifications(data);
   const closeModal = () => {
     dispatch(setCloseModal());
   };
