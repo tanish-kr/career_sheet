@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bulma-components";
-import { QualificationState, selectQualifications } from "../../redux/modules/qualifications";
+import {  selectQualifications } from "../../redux/modules/qualifications";
 
 export const Qualifications: FC = () => {
   const dispatch = useDispatch();
