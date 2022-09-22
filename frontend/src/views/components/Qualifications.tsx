@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Table } from "react-bulma-components";
-import {  selectQualifications } from "../../redux/modules/qualifications";
+import { selectQualifications } from "../../redux/modules/qualifications";
 
 export const Qualifications: FC = () => {
-  const dispatch = useDispatch();
   const qualifications = useSelector(selectQualifications);
   const qualificationItems = qualifications.map((qualification, index) => (
     <tr key={index}>
@@ -21,9 +20,7 @@ export const Qualifications: FC = () => {
           <th>Acquisition date</th>
         </tr>
       </thead>
-      <tbody>
-        {qualificationItems}
-      </tbody>
+      <tbody>{qualificationItems}</tbody>
     </Table>
   );
 };

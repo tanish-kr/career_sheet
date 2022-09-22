@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
+
 import { I18nextProvider } from "react-i18next";
 import "./index.css";
 import App from "./views/App";
@@ -11,7 +10,6 @@ import { i18n } from "./locales/config";
 import store from "./redux/store";
 
 const rootElement = document.getElementById("root");
-const persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
