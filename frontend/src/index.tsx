@@ -7,16 +7,21 @@ import "./index.css";
 import App from "./views/App";
 import * as serviceWorker from "./serviceWorker";
 import { i18n } from "./locales/config";
-import store from "./redux/store";
+import store, { persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-  <Provider store={store}>
-    <I18nextProvider i18n={i18n}>
-      <App />
-    </I18nextProvider>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </I18nextProvider>
+    </Provider>
+  </React.StrictMode>,
   rootElement
 );
 
