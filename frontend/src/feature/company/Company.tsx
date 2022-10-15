@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Card, Content, Columns } from "react-bulma-components";
-import { Project } from "./Project";
+import { Project } from "../project/Project";
 
 export const Company: FC = () => {
   return (
