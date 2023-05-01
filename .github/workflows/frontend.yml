@@ -2,11 +2,11 @@ name: frontend
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
     branches:
       - develop
-      - master
+      - main
 
 jobs:
   build:
