@@ -30,7 +30,7 @@ export const Profile: FC = () => {
           <Card>
             <div className="avatar-header is-flex is-justify-content-center">
               <Image
-                className=""
+                className="is-hidden"
                 size={96}
                 rounded={true}
                 src="https://placehold.jp/96x96.png"

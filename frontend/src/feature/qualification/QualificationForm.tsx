@@ -66,16 +66,31 @@ export const QualificationForm: FC = () => {
               )}
             </Form.Field>
             <Form.Field>
-              <Form.Label>Birthday</Form.Label>
+              <Form.Label>Qualification date</Form.Label>
               <Form.Control>
                 <Controller
                   control={control}
                   name="acquisitionDate"
+                  rules={{ required: true }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Input
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.name?.type === "required" ? "danger" : "text"
+                      }
+                    />
+                  )}
+                />
+                {/*
+                <Controller
+                  control={control}
+                  name="acquisitionDate"
                   rules={{ required: false }}
-                  defaultValue={"2001-01-01"}
+                  defaultValue={"2001-01"}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="yyyy-MM"
                       onChange={(date) => {
                         onChange(date ? date.toString() : "");
                       }}
@@ -85,8 +100,9 @@ export const QualificationForm: FC = () => {
                       dropdownMode="select"
                       selected={value ? new Date(value) : null}
                     />
-                  )}
+                    )}
                 />
+                */}
               </Form.Control>
               {errors.acquisitionDate?.type === "required" && (
                 <Form.Help color="danger"></Form.Help>

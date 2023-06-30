@@ -28,12 +28,7 @@ const App: FC = () => {
           <Tile size={6} vertical>
             <Tile kind="parent" vertical>
               <Tile kind="child" className="card">
-                <Card.Header.Title className="has-background-grey-lighter">
-                  Qualifications
-                </Card.Header.Title>
-                <Card.Content className="pt-0">
-                  <Qualifications />
-                </Card.Content>
+                <Qualifications />
               </Tile>
               <Tile kind="child" className="card">
                 <Card.Header.Title className="has-background-grey-lighter">

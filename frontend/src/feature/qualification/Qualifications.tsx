@@ -1,7 +1,12 @@
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
-import { Table } from "react-bulma-components";
+import { useSelector, useDispatch } from "react-redux";
+import { format } from "date-fns";
+import { Table, Card, Icon } from "react-bulma-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { setOpenModal } from "../../redux/modules/modals";
 import { selectQualifications } from "../../redux/modules/qualifications";
+import { QualificationForm } from "./QualificationForm";
 
 export const Qualifications: FC = () => {
   const qualifications = useSelector(selectQualifications);
@@ -11,17 +16,41 @@ export const Qualifications: FC = () => {
       <td>{qualification.acquisitionDate}</td>
     </tr>
   ));
+  const dispatch = useDispatch();
+  const openModal = (name: string) => {
+    dispatch(setOpenModal(name));
+  };
+
 
   return (
-    <Table bordered={false} size="fullwidth" striped={true}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Acquisition date</th>
-        </tr>
-      </thead>
-      <tbody>{qualificationItems}</tbody>
-    </Table>
+    <>
+      <Card.Header>
+        <Card.Header.Title className="has-background-grey-lighter">
+          Qualifications
+        </Card.Header.Title>
+        <Card.Header.Icon className="has-background-grey-lighter">
+          <Icon
+            onClick={() => {
+              openModal("qualification");
+            }}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Icon>
+        </Card.Header.Icon>
+      </Card.Header>
+      <Card.Content className="pt-0">
+        <Table bordered={false} size="fullwidth" striped={true}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Acquisition date</th>
+            </tr>
+          </thead>
+          <tbody>{qualificationItems}</tbody>
+        </Table>
+      </Card.Content>
+      <QualificationForm />
+    </>
   );
 };
 
