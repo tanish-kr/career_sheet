@@ -77,7 +77,7 @@ export const QualificationForm: FC = () => {
                     <DatePicker
                       dateFormat="yyyy-MM-dd"
                       onChange={(date) => {
-                        onChange(date ? date.toString() : null);
+                        onChange(date ? date.toString() : "");
                       }}
                       onBlur={onBlur}
                       showMonthDropdown
