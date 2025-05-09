@@ -20,7 +20,6 @@ const compat = new FlatCompat({
 export default defineConfig([{
     extends: compat.extends(
         "eslint:recommended",
-        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "prettier",
@@ -42,8 +41,8 @@ export default defineConfig([{
         sourceType: "module",
 
         parserOptions: {
-            project: ["./tsconfig.json"],
             tsconfigRootDir: __dirname,
+            project: "./tsconfig.json",
 
             ecmaFeatures: {
                 jsx: true,
@@ -53,5 +52,7 @@ export default defineConfig([{
 
     rules: {
         "autofix/no-unused-vars": "warn",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
     },
 }]);
