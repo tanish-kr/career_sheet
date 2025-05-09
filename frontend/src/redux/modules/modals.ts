@@ -25,6 +25,6 @@ const ModalSlice = createSlice({
 });
 
 export const { setOpenModal, setCloseModal } = ModalSlice.actions;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+ 
 export const selectModalName = (state: RootState) => state.modals.name;
 export default ModalSlice.reducer;

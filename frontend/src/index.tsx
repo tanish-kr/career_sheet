@@ -10,7 +10,8 @@ import { i18n } from "./locales/config";
 import store, { persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root")!;
+if (!rootElement) throw new Error("Root element not found");
 
 ReactDOM.render(
   <React.StrictMode>

@@ -41,7 +41,7 @@ export const ProfileForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={() => { void handleSubmit(onSubmit) }}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Profile</Modal.Card.Title>
           </Modal.Card.Header>

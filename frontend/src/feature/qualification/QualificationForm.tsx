@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import DatePicker from "react-datepicker";
+
 import { Form, Modal } from "react-bulma-components";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
@@ -38,7 +38,7 @@ export const QualificationForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={() => { void handleSubmit(onSubmit) }}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Qualification</Modal.Card.Title>
           </Modal.Card.Header>

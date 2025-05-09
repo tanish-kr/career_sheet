@@ -17,7 +17,7 @@ const QualificationSlice = createSlice({
 });
 
 export const { addQualifications } = QualificationSlice.actions;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+ 
 export const selectQualifications = (state: RootState) => state.qualifications;
 
 export default QualificationSlice.reducer;

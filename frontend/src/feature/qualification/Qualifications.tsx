@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { format } from "date-fns";
+
 import { Table, Card, Icon } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +20,6 @@ export const Qualifications: FC = () => {
   const openModal = (name: string) => {
     dispatch(setOpenModal(name));
   };
-
 
   return (
     <>

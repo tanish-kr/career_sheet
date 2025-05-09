@@ -33,9 +33,9 @@ const ProfileSlice = createSlice({
 });
 
 export const { setProfile } = ProfileSlice.actions;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+ 
 export const selectProfile = (state: RootState) => state.profile;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+ 
 export const selectAge = (state: RootState) => {
   const today = new Date();
   const birthday = new Date(state.profile.birthday);

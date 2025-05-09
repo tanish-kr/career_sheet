@@ -33,7 +33,7 @@ export const SkillForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={() => { void handleSubmit(onSubmit) }}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Skill</Modal.Card.Title>
           </Modal.Card.Header>
