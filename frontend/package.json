@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
+    "@testing-library/dom": "^10.4.0",
     "@types/react-datepicker": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
