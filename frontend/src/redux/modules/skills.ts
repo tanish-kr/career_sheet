@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 export interface SkillState {
   name: string;
@@ -17,7 +17,7 @@ const SkillsSlice = createSlice({
 });
 
 export const { addSkills } = SkillsSlice.actions;
- 
+
 export const selectSkills = (state: RootState) => state.skills;
 
 export default SkillsSlice.reducer;

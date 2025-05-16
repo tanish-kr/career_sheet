@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 export interface QualificationState {
   name: string;
@@ -17,7 +17,7 @@ const QualificationSlice = createSlice({
 });
 
 export const { addQualifications } = QualificationSlice.actions;
- 
+
 export const selectQualifications = (state: RootState) => state.qualifications;
 
 export default QualificationSlice.reducer;

@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Form, Modal } from "react-bulma-components";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, type SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
 import {
-  QualificationState,
+  type QualificationState,
   addQualifications,
 } from "../../redux/modules/qualifications";
 
@@ -38,7 +38,11 @@ export const QualificationForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form onSubmit={() => { void handleSubmit(onSubmit) }}>
+        <form
+          onSubmit={() => {
+            void handleSubmit(onSubmit);
+          }}
+        >
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Qualification</Modal.Card.Title>
           </Modal.Card.Header>

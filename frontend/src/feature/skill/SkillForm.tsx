@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
 import { Form, Modal, Button } from "react-bulma-components";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { SkillState, addSkills } from "../../redux/modules/skills";
+import { useForm, type SubmitHandler, Controller } from "react-hook-form";
+import { type SkillState, addSkills } from "../../redux/modules/skills";
 
 export const SkillForm: FC = () => {
   const modalName = useSelector(selectModalName);
@@ -33,7 +33,11 @@ export const SkillForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form onSubmit={() => { void handleSubmit(onSubmit) }}>
+        <form
+          onSubmit={() => {
+            void handleSubmit(onSubmit);
+          }}
+        >
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Skill</Modal.Card.Title>
           </Modal.Card.Header>

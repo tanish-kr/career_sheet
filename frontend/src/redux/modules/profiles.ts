@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 export interface ProfileState {
   name: string;
@@ -33,9 +33,9 @@ const ProfileSlice = createSlice({
 });
 
 export const { setProfile } = ProfileSlice.actions;
- 
+
 export const selectProfile = (state: RootState) => state.profile;
- 
+
 export const selectAge = (state: RootState) => {
   const today = new Date();
   const birthday = new Date(state.profile.birthday);
@@ -43,7 +43,7 @@ export const selectAge = (state: RootState) => {
   const thisYearsBirthday = new Date(
     today.getFullYear(),
     birthday.getMonth(),
-    birthday.getDate()
+    birthday.getDate(),
   );
   return age + (thisYearsBirthday.getTime() > today.getTime() ? -1 : 0);
 };

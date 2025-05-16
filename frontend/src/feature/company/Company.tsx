@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { Card, Content, Columns } from "react-bulma-components";
 import { Project } from "../project/Project";
 

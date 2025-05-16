@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { Navbar } from "react-bulma-components";
 import { TranslationComponent } from "../translation/Translation";
 import { useTranslation } from "react-i18next";

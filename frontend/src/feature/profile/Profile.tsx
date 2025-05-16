@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import {
   Level,
   Heading,
   Image,
   Columns,
   Card,
-  Element,
+  Content,
   Icon,
 } from "react-bulma-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -61,9 +61,9 @@ export const Profile: FC = () => {
                   </Heading>
                 </Level.Side>
               </Level>
-              <Element textSize="5" textAlign="left">
+              <Content textSize="5" textAlign="left">
                 {profile.about || "About"}
-              </Element>
+              </Content>
             </Card.Content>
           </Card>
         </Columns.Column>

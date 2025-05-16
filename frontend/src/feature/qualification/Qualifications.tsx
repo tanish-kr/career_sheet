@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Table, Card, Icon } from "react-bulma-components";

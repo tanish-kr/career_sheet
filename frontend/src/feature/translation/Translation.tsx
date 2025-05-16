@@ -1,6 +1,6 @@
-import React, { FC, useEffect } from "react";
+import React, { type FC, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { TransitionState, setLang } from "../../redux/modules/translations";
+import { type TransitionState, setLang } from "../../redux/modules/translations";
 import { i18n } from "../../locales/config";
 import jaIcon from "../../images/ja.png";
 import enIcon from "../../images/en.png";
