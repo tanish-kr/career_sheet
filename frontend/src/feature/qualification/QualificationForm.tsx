@@ -38,11 +38,7 @@ export const QualificationForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form
-          onSubmit={() => {
-            void handleSubmit(onSubmit);
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Qualification</Modal.Card.Title>
           </Modal.Card.Header>
@@ -61,6 +57,7 @@ export const QualificationForm: FC = () => {
                       color={
                         errors.name?.type === "required" ? "danger" : "text"
                       }
+                      renderAs={"input"}
                     />
                   )}
                 />
@@ -83,6 +80,7 @@ export const QualificationForm: FC = () => {
                       color={
                         errors.name?.type === "required" ? "danger" : "text"
                       }
+                      renderAs={"input"}
                     />
                   )}
                 />

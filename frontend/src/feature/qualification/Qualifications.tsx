@@ -22,7 +22,7 @@ export const Qualifications: FC = () => {
   };
 
   return (
-    <>
+    <Card>
       <Card.Header>
         <Card.Header.Title className="has-background-grey-lighter">
           Qualifications
@@ -49,7 +49,7 @@ export const Qualifications: FC = () => {
         </Table>
       </Card.Content>
       <QualificationForm />
-    </>
+    </Card>
   );
 };
 

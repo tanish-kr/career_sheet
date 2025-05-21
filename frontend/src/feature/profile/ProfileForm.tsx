@@ -41,11 +41,7 @@ export const ProfileForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form
-          onSubmit={() => {
-            void handleSubmit(onSubmit);
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Profile</Modal.Card.Title>
           </Modal.Card.Header>
@@ -65,6 +61,7 @@ export const ProfileForm: FC = () => {
                       color={
                         errors.name?.type === "required" ? "danger" : "text"
                       }
+                      renderAs={"input"}
                     />
                   )}
                 />
@@ -116,6 +113,7 @@ export const ProfileForm: FC = () => {
                           errors.gender?.type === "required" ? "danger" : "text"
                         }
                         value="male"
+                        renderAs={"input"}
                       >
                         male
                       </Form.Radio>
@@ -126,6 +124,7 @@ export const ProfileForm: FC = () => {
                           errors.gender?.type === "required" ? "danger" : "text"
                         }
                         value="famel"
+                        renderAs={"input"}
                       >
                         female
                       </Form.Radio>
@@ -152,6 +151,7 @@ export const ProfileForm: FC = () => {
                       color={
                         errors.about?.type === "required" ? "danger" : "text"
                       }
+                      renderAs={"textarea"}
                     />
                   )}
                 />
@@ -177,6 +177,7 @@ export const ProfileForm: FC = () => {
                           ? "danger"
                           : "text"
                       }
+                      renderAs={"input"}
                     />
                   )}
                 />

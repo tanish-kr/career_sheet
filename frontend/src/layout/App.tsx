@@ -16,34 +16,32 @@ const App: FC = () => {
     <>
       <NavigationComponent />
       <Section>
-        <Profile />
-        <Tile kind="ancestor">
-          <Tile size={6} vertical>
-            <Tile kind="parent" vertical>
-              <Tile kind="child" className="card">
-                <Skills />
-              </Tile>
-            </Tile>
-          </Tile>
-          <Tile size={6} vertical>
-            <Tile kind="parent" vertical>
-              <Tile kind="child" className="card">
-                <Qualifications />
-              </Tile>
-              <Tile kind="child" className="card">
+        <div className="fixed-grid has-2-cols">
+          <div className="grid">
+            <div className="cell is-col-span-2">
+              <Profile />
+            </div>
+            <div className="cell is-row-span-2">
+              <Skills />
+            </div>
+            <div className="cell">
+              <Qualifications />
+            </div>
+            <div className="cell">
+              <Card>
                 <Card.Header.Title className="has-background-grey-lighter">
                   Links
                 </Card.Header.Title>
                 <Card.Content className="pt-0">
                   <Links />
                 </Card.Content>
-              </Tile>
-            </Tile>
-          </Tile>
-        </Tile>
-      </Section>
-      <Section>
-        <Company />
+              </Card>
+            </div>
+            <div className="cell is-col-span-2">
+              <Company />
+            </div>
+          </div>
+        </div>
       </Section>
     </>
   );

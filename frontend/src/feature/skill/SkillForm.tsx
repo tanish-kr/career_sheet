@@ -33,11 +33,7 @@ export const SkillForm: FC = () => {
       }}
     >
       <Modal.Card>
-        <form
-          onSubmit={() => {
-            void handleSubmit(onSubmit);
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Card.Header showClose>
             <Modal.Card.Title>Skill</Modal.Card.Title>
           </Modal.Card.Header>
@@ -57,6 +53,7 @@ export const SkillForm: FC = () => {
                       color={
                         errors.name?.type === "required" ? "danger" : "text"
                       }
+                      renderAs={"input"}
                     />
                   )}
                 />
@@ -75,27 +72,27 @@ export const SkillForm: FC = () => {
                   render={({ field: { ref, ...inputProps } }) => (
                     <ul>
                       <li>
-                        <Form.Radio {...inputProps} domRef={ref} value="20">
+                        <Form.Radio {...inputProps} domRef={ref} value="20" renderAs={"input"}>
                           半年以内
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio {...inputProps} domRef={ref} value="40">
+                        <Form.Radio {...inputProps} domRef={ref} value="40" renderAs={"input"}>
                           半年以上-1年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio {...inputProps} domRef={ref} value="60">
+                        <Form.Radio {...inputProps} domRef={ref} value="60" renderAs={"input"}>
                           1年以上-3年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio {...inputProps} domRef={ref} value="80">
+                        <Form.Radio {...inputProps} domRef={ref} value="80" renderAs={"input"}>
                           3年以上- 5年未満
                         </Form.Radio>
                       </li>
                       <li>
-                        <Form.Radio {...inputProps} domRef={ref} value="100">
+                        <Form.Radio {...inputProps} domRef={ref} value="100" renderAs={"input"}>
                           5年以上
                         </Form.Radio>
                       </li>

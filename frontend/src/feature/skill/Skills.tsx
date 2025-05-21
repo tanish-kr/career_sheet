@@ -26,13 +26,14 @@ export const Skills: FC = () => {
           color="success"
           value={skill.experience}
           max={100}
+          renderAs="progress"
         />
       </Element>
     </span>
   ));
 
   return (
-    <>
+    <Card>
       <Card.Header>
         <Card.Header.Title className="has-background-grey-lighter">
           Skills
@@ -53,7 +54,7 @@ export const Skills: FC = () => {
       </Card.Content>
 
       <SkillForm />
-    </>
+    </Card>
   );
 };
 
