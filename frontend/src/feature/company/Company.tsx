@@ -55,9 +55,7 @@ export const Company: FC = () => {
               </Columns.Column>
               <Columns.Column>{company.accomplishment}</Columns.Column>
             </Columns>
-            <Columns>
-              <Project />
-            </Columns>
+            <Project />
           </Card.Content>
         </Card>
       ))}
