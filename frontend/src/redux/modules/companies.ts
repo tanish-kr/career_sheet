@@ -7,8 +7,8 @@ export interface CompanyState {
   employees: number;
   occupation: string;
   accomplishment: string;
-  startOn: Date;
-  endOn: Date;
+  startOn: string;
+  endOn: string;
 }
 
 const CompanySlice = createSlice({
@@ -24,6 +24,15 @@ const CompanySlice = createSlice({
 
 export const { addCompanies } = CompanySlice.actions;
 
-export const selectCompanies = (state: RootState) => state.companies;
+export const selectCompanies = (state: RootState) => {
+  const companies = [...state.companies];
+
+  return companies.sort((a, b) => {
+    const dateA = new Date(`${a.startOn}-01`);
+    const dateB = new Date(`${b.startOn}-01`);
+
+    return dateB.getTime() - dateA.getTime();
+  });
+}
 
 export default CompanySlice.reducer;
