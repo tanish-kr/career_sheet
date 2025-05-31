@@ -2,6 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
 export interface CompanyState {
+  id: string;
   name: string;
   employmentForm: string;
   employees: number;
@@ -13,10 +14,16 @@ export interface CompanyState {
 
 const CompanySlice = createSlice({
   name: "company",
-  initialState: [] as SkillState[],
+  initialState: [] as CompanyState[],
   reducers: {
-    addCompanies(state, action: PayloadAction<CompanyState>) {
-      state.push(action.payload);
+    addCompanies: {
+      reducer: (state, action: PayloadAction<CompanyState>) => {
+        state.push(action.payload);
+      },
+      prepare: (companyData: Omit<CompanyState, "id">) => {
+        const newId = Date.now().toString();
+        return { payload: { ...companyData, id: newId } };
+      }
     },
   },
 })

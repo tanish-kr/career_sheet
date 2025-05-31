@@ -2,7 +2,7 @@ import React, { type FC } from "react";
 import { Card, Content, Columns, Icon, Button } from "react-bulma-components";
 import { Project } from "../project/Project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { CompanyForm } from "./CompanyForm";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ export const Company: FC = () => {
   const openModal = (name: string) => {
     dispatch(setOpenModal(name));
   };
-  console.log(companies);
+
   return (
     <>
       {companies.length == 0 &&
@@ -35,7 +35,7 @@ export const Company: FC = () => {
                   openModal("company");
                 }}
               >
-                <FontAwesomeIcon icon={faEdit} />
+                <FontAwesomeIcon icon={faPlus} />
               </Icon>
             </Card.Header.Icon>
           </Card.Header>
@@ -55,7 +55,7 @@ export const Company: FC = () => {
               </Columns.Column>
               <Columns.Column>{company.accomplishment}</Columns.Column>
             </Columns>
-            <Project />
+            <Project companyId={company.id} />
           </Card.Content>
         </Card>
       ))}
