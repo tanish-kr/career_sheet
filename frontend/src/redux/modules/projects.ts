@@ -31,6 +31,14 @@ const ProjectSlice = createSlice({
 
 export const { addProject } = ProjectSlice.actions;
 
-export const selectProjects = (companyId: string) => (state: RootState) => state.projects.filter(project => project.companyId == companyId);
+export const selectProjects = (companyId: string) => (state: RootState) => {
+  const projects = [...state.projects];
+  return projects.filter(project => project.companyId == companyId).sort((a, b) => {
+    const dateA = new Date(`${a.startOn}-01`);
+    const dateB = new Date(`${b.startOn}-01`);
+
+    return dateB.getTime() - dateA.getTime();
+  });
+}
 
 export default ProjectSlice.reducer;

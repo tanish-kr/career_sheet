@@ -1,11 +1,11 @@
 import React, { type FC } from "react";
 import {
   Card,
-  Columns,
   Heading,
   Block,
   Tag,
   Form,
+  Icon,
   Button
 } from "react-bulma-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,8 @@ import { ProjectForm } from "./ProjectForm";
 import { setOpenModal } from "../../redux/modules/modals";
 import { selectProjects } from "../../redux/modules/projects";
 import { format } from "date-fns";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ProjectProps {
   companyId: string
@@ -26,8 +28,6 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
   };
 
 
-  console.log(companyId, projects);
-  console.log(companyId, projects[0]);
   return (
     <>
       {projects.length == 0 &&
@@ -36,9 +36,20 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
 
       {projects.map((project, index) => (
         <Card key={index}>
-          <Card.Header.Title>
-            {project.title}
-          </Card.Header.Title>
+          <Card.Header>
+            <Card.Header.Title>
+              {project.title}
+            </Card.Header.Title>
+            <Card.Header.Icon>
+              <Icon
+                onClick={() => {
+                  openModal("project");
+                }}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </Icon>
+            </Card.Header.Icon>
+          </Card.Header>
           <Card.Content>
             <div className="fixed-grid has-4-cols">
               <div className="grid">
@@ -84,9 +95,9 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
                     {project.technologies?.map((technology, index) => (
                       <Form.Control key={index}>
                         <Tag.Group hasAddons={technology.version ? true : false}>
-                          <Tag color="info">{technology.name}</Tag>
+                          <Tag color="info" className="has-text-white has-text-weight-bold">{technology.name}</Tag>
                           {technology.version &&
-                            <Tag>{technology.version}</Tag>
+                            <Tag className="has-text-weight-bold">{technology.version}</Tag>
                           }
                         </Tag.Group>
                       </Form.Control>
