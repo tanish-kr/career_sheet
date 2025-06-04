@@ -8,7 +8,7 @@ export const Links: FC = () => {
     <Content>
       <ul className="mt-0">
         <li>
-          <a href="#" target="_blank">
+          <a href="https://carefree-se.hatenablog.com/" target="_blank">
             Blog
             <Icon>
               <FontAwesomeIcon icon={faExternalLinkAlt} />
@@ -16,7 +16,7 @@ export const Links: FC = () => {
           </a>
         </li>
         <li>
-          <a href="#" target="_blank">
+          <a href="https://github.com/tanish-kr" target="_blank">
             Github
             <Icon>
               <FontAwesomeIcon icon={faExternalLinkAlt} />
@@ -24,7 +24,7 @@ export const Links: FC = () => {
           </a>
         </li>
         <li>
-          <a href="#" target="_blank">
+          <a href="https://www.linkedin.com/in/tatsunori-nishikori-477a7790/" target="_blank">
             LinkedIn
             <Icon>
               <FontAwesomeIcon icon={faExternalLinkAlt} />
