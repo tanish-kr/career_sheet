@@ -1,7 +1,7 @@
 import React, { type FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Form, Modal } from "react-bulma-components";
+import { Form, Modal, Button } from "react-bulma-components";
 import { useForm, type SubmitHandler, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import { setCloseModal, selectModalName } from "../../redux/modules/modals";
@@ -81,36 +81,29 @@ export const QualificationForm: FC = () => {
                         errors.name?.type === "required" ? "danger" : "text"
                       }
                       renderAs={"input"}
+                      type="month"
                     />
                   )}
                 />
-                {/*
-                <Controller
-                  control={control}
-                  name="acquisitionDate"
-                  rules={{ required: false }}
-                  defaultValue={"2001-01"}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <DatePicker
-                      dateFormat="yyyy-MM"
-                      onChange={(date) => {
-                        onChange(date ? date.toString() : "");
-                      }}
-                      onBlur={onBlur}
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      selected={value ? new Date(value) : null}
-                    />
-                    )}
-                />
-                */}
               </Form.Control>
               {errors.acquisitionDate?.type === "required" && (
                 <Form.Help color="danger"></Form.Help>
               )}
             </Form.Field>
           </Modal.Card.Body>
+          <Modal.Card.Footer>
+            <Button color="success" submit={true}>
+              Save
+            </Button>
+            <Button
+              color="grey-light"
+              onClick={() => {
+                return closeModal();
+              }}
+            >
+              Cancel
+            </Button>
+          </Modal.Card.Footer>
         </form>
       </Modal.Card>
     </Modal>
