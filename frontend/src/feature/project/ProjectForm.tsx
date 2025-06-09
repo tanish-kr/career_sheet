@@ -166,6 +166,27 @@ export const ProjectForm: FC<ProjectFormProps> = ({ companyId }) => {
                 />
               </Form.Control>
             </Form.Field>
+            <Form.Field>
+              <Form.Label>実績・取り組み</Form.Label>
+              <Form.Control>
+                <Controller
+                  control={control}
+                  name="achievement"
+                  defaultValue={""}
+                  rules={{ required: false }}
+                  render={({ field: { ref, ...inputProps } }) => (
+                    <Form.Input
+                      {...inputProps}
+                      domRef={ref}
+                      color={
+                        errors.description?.type === "required" ? "danger" : "text"
+                      }
+                      renderAs={"textarea"}
+                    />
+                  )}
+                />
+              </Form.Control>
+            </Form.Field>
             <Heading renderAs="h3" size={5}>
               使用技術
               <Icon onClick={() => append({ name: "", version: "" })}>

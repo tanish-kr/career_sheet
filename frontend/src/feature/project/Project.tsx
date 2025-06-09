@@ -51,14 +51,8 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
             </Card.Header.Icon>
           </Card.Header>
           <Card.Content>
-            <div className="fixed-grid has-4-cols">
+            <div className="fixed-grid has-3-cols">
               <div className="grid">
-                <div className="cell">
-                  <Heading renderAs="h6" size={6}>
-                    期間
-                  </Heading>
-                  <Block>{format(project.startOn, "yyyy-MM")} - {format(project.endOn, "yyyy-MM")}</Block>
-                </div>
                 <div className="cell">
                   <Heading renderAs="h6" size={6}>
                     プロジェクトの概要
@@ -67,6 +61,21 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
                     {project.summary}
                   </Block>
                 </div>
+                <div className="cell is-col-span-2">
+                  <Heading renderAs="h6" size={6}>
+                    業務内容
+                  </Heading>
+                  <Block>
+                    {project.description}
+                  </Block>
+                </div>
+                <div className="cell">
+                  <Heading renderAs="h6" size={6}>
+                    期間
+                  </Heading>
+                  <Block>{format(project.startOn, "yyyy-MM")} - {format(project.endOn, "yyyy-MM")}</Block>
+                </div>
+
                 <div className="cell">
                   <Heading renderAs="h6" size={6}>
                     メンバー
@@ -81,13 +90,13 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
                 </div>
                 <div className="cell is-col-span-2">
                   <Heading renderAs="h6" size={6}>
-                    業務内容
+                    実績・取り組み
                   </Heading>
                   <Block>
-                    {project.description}
+                    {project.achievement}
                   </Block>
                 </div>
-                <div className="cell is-col-span-2">
+                <div className="cell">
                   <Heading renderAs="h6" size={6}>
                     使用技術
                   </Heading>

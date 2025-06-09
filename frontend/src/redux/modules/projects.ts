@@ -8,6 +8,7 @@ export interface ProjectState {
   jobRole: string;
   member: number;
   description: string;
+  achievement: string;
   technologies?: Technology[];
   startOn: string;
   endOn: string;
