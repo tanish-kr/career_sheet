@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { useEffect, type FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCloseModal, selectModalName, selectModalContext } from "../../redux/modules/modals";
 import { Form, Modal, Button, Heading, Content, Box, Icon } from "react-bulma-components";
@@ -10,14 +10,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ProjectForm: FC = () => {
   const modalName = useSelector(selectModalName);
   const modalContext = useSelector(selectModalContext);
-
+  const { companyId, companyName } = modalContext ?? {};
   const dispatch = useDispatch();
   const {
     handleSubmit,
     control,
     formState: { errors },
     register,
-  } = useForm<ProjectState>();
+    setValue
+  } = useForm<ProjectState>({ defaultValues: { companyId: companyId}});
 
   const onSubmit: SubmitHandler<ProjectState> = (data) => insertProject(data);
 
@@ -35,7 +36,10 @@ export const ProjectForm: FC = () => {
     name: "technologies"
   })
 
-  const { companyId, companyName } = modalContext ?? {};
+  useEffect(() => {
+    if (companyId) setValue("companyId", companyId);
+  }, [companyId, setValue])
+
 
   return (
     <Modal
@@ -51,7 +55,7 @@ export const ProjectForm: FC = () => {
               <Modal.Card.Title>Add Project: {companyName}({companyId})</Modal.Card.Title>
             </Modal.Card.Header>
             <Modal.Card.Body>
-              <input {...register("companyId", { value: companyId })} type="hidden" />
+              <input {...register("companyId")} type="hidden" />
               <Form.Field>
                 <Form.Label>Title</Form.Label>
                 <Form.Control>
