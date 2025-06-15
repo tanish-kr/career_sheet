@@ -20,7 +20,7 @@ export const Profile: FC = () => {
   const age = useSelector(selectAge);
   const dispatch = useDispatch();
   const openModal = (name: string) => {
-    dispatch(setOpenModal(name));
+    dispatch(setOpenModal({ name: name }));
   };
 
   return (

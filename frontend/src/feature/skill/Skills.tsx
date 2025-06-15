@@ -12,7 +12,7 @@ export const Skills: FC = () => {
   const skills = useSelector(selectSkills);
   const dispatch = useDispatch();
   const openModal = (name: string) => {
-    dispatch(setOpenModal(name));
+    dispatch(setOpenModal({ name: name }));
   };
 
   const listItems = skills.map((skill, index) => (

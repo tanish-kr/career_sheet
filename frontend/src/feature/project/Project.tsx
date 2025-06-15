@@ -17,16 +17,17 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ProjectProps {
-  companyId: string
+  companyId: string,
+  companyName: string
 };
 
-export const Project: FC<ProjectProps> = ({ companyId }) => {
+export const Project: FC<ProjectProps> = ({ companyId, companyName }) => {
   const projects = useSelector(selectProjects(companyId));
   const dispatch = useDispatch();
   const openModal = (name: string) => {
-    dispatch(setOpenModal(name));
+    console.log("open modal companyId", companyId);
+    dispatch(setOpenModal({ name: name, context: { companyId: companyId, companyName: companyName }}));
   };
-
 
   return (
     <>
@@ -119,7 +120,7 @@ export const Project: FC<ProjectProps> = ({ companyId }) => {
         </Card>
       ))}
 
-      <ProjectForm companyId={companyId} />
+      <ProjectForm />
     </>
   );
 };

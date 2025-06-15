@@ -14,7 +14,7 @@ export const Company: FC = () => {
   const companies = useSelector(selectCompanies);
   const dispatch = useDispatch();
   const openModal = (name: string) => {
-    dispatch(setOpenModal(name));
+    dispatch(setOpenModal({ name: name }));
   };
 
   return (
@@ -55,7 +55,7 @@ export const Company: FC = () => {
               </Columns.Column>
               <Columns.Column>{company.accomplishment}</Columns.Column>
             </Columns>
-            <Project companyId={company.id} />
+            <Project key={index} companyId={company.id} companyName={company.name} />
           </Card.Content>
         </Card>
       ))}
