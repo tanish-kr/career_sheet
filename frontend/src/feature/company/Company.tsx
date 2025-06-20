@@ -47,7 +47,7 @@ export const Company: FC = () => {
                     <dt>雇用形態</dt>
                     <dd>{company.employmentForm}</dd>
                     <dt>継続年数</dt>
-                    <dd>{format(company.startOn, "yyyy-MM")} - {format(company.endOn, "yyyy-MM")}</dd>
+                    <dd>{format(company.startOn, "yyyy-MM")} - {company.endOn && format(company.endOn, "yyyy-MM")}</dd>
                     <dt>職種</dt>
                     <dd>{company.occupation}</dd>
                   </dl>

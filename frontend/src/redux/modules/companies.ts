@@ -35,10 +35,23 @@ export const selectCompanies = (state: RootState) => {
   const companies = [...state.companies];
 
   return companies.sort((a, b) => {
-    const dateA = new Date(`${a.startOn}-01`);
-    const dateB = new Date(`${b.startOn}-01`);
+    const startDateA = new Date(`${a.startOn}-01`);
+    const startDateB = new Date(`${b.startOn}-01`);
 
-    return dateB.getTime() - dateA.getTime();
+    const startDiff = startDateB.getTime() - startDateA.getTime();
+      if (startDiff !== 0) {
+        return startDiff;
+      }
+
+    // 終了日比較（null を最大と見なす）
+    const endDateA = a.endOn ? new Date(`${a.endOn}-01`) : null;
+    const endDateB = b.endOn ? new Date(`${b.endOn}-01`) : null;
+
+    if (!endDateA && !endDateB) return 0; // 両方null → 同順位
+    if (!endDateA) return 1;              // Aは稼働中 → Aは下（古い）
+    if (!endDateB) return -1;             // Bは稼働中 → Bは下（古い）
+
+    return endDateB.getTime() - endDateA.getTime(); // 終了月の降順
   });
 }
 
